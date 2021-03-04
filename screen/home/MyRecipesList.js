@@ -6,13 +6,12 @@ import rngData from '../../utils/rngData';
 const data = rngData();
 
 const renderItem = ({ item }) => {
-  console.log('MyRecipesList.js -- item:', item);
   return (
   <RecipeCard recipeInfo={item}/>
   );
 }
 
-export default function MyRecipesList({ navigation }) {
+export default function MyRecipesList() {
   return (
     <SafeAreaView>
       <FlatList
@@ -22,4 +21,4 @@ export default function MyRecipesList({ navigation }) {
       />
     </SafeAreaView>
   );
-}
+};
