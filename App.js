@@ -1,31 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from './screen/home/HomeScreen';
+import { StatusBar } from "expo-status-bar";
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import HomeStackScreen from "./screen/home/HomeStackScreen";
+import ExploreScreen from "./screen/explore/ExploreScreen";
 
-const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-      </Stack.Navigator>
+      <Tab.Navigator>
+        <Tab.Screen name="Home" component={HomeStackScreen} />
+        <Tab.Screen name="Explore" component={ExploreScreen} />
+      </Tab.Navigator>
     </NavigationContainer>
-    // <View style={styles.container}>
-    //   <Text>Open up App.js to start working on your app!</Text>
-    //   <StatusBar style="auto" />
-    // </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
