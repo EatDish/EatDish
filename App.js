@@ -10,7 +10,7 @@ import themeSwitcher from './theme.js';
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-  const theme = themeSwitcher('dark');
+  let theme = themeSwitcher('dark');
 
   return (
     <NavigationContainer style={styles.container} theme={theme}>
