@@ -1,10 +1,22 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, FlatList, SafeAreaView } from "react-native";
+import RecipeCard from "./RecipeCard";
+import rngData from "../../utils/rngData";
 
-export default function SavedRecipesList({ navigation }) {
+const data = rngData();
+
+const renderItem = ({ item }) => {
+  return <RecipeCard recipeInfo={item} />;
+};
+
+export default function SavedRecipesList() {
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Saved Recipes</Text>
-    </View>
+    <SafeAreaView>
+      <FlatList
+        data={data}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id.toString()}
+      />
+    </SafeAreaView>
   );
 }
