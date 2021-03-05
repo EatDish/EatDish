@@ -17,7 +17,17 @@ export default function ExploreRecipe({ route, navigation }) {
   const { colors } = useTheme();
   const { recipe } = route.params;
 
-  const mappedIngredients = recipe.ingredientList.map((ingredient, index) => (
+  const ingredientList = [
+    "rice",
+    "tofu",
+    "soy sauce",
+    "salt",
+    "pepper",
+    "milk",
+    "cheese",
+  ];
+
+  const mappedIngredients = ingredientList.map((ingredient, index) => (
     <CheckBox
       containerStyle={{ backgroundColor: "transparent" }}
       key={index}
@@ -106,8 +116,8 @@ export default function ExploreRecipe({ route, navigation }) {
             </View>
           </TouchableOpacity>
           {showInstructions && (
-            <Text style={{ ...styles.instructions, color: colors.text }}>
-              {recipe.instructions}
+            <Text style={{ ...styles.directions, color: colors.text }}>
+              {recipe.directions}
             </Text>
           )}
         </View>

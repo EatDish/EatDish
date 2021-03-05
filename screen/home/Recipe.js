@@ -117,8 +117,8 @@ export default function Recipe({ route, navigation }) {
             </View>
           </TouchableOpacity>
           {showInstructions && (
-            <Text style={{ ...styles.instructions, color: colors.text }}>
-              {recipe.instructions}
+            <Text style={{ ...styles.directions, color: colors.text }}>
+              {recipe.directions}
             </Text>
           )}
         </View>
