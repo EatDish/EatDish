@@ -1,10 +1,10 @@
-const { uuid } = require('uuidv4');
+const { v4: uuidv4 } = require('uuid');
 
 export default function rngData () {
   const data = [];
   for(let i = 0; i < 10; i++) {
     const recipe = {
-      id: uuid(),
+      id: uuidv4(),
       userName: 'danny',
       dishName: 'kanban',
       cuisine: 'sushi',
