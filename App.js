@@ -5,11 +5,13 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome, Entypo } from "@expo/vector-icons";
 import HomeStackScreen from "./screen/home/HomeStackScreen";
 import ExploreScreen from "./screen/explore/ExploreScreen";
-import theme from './theme.js';
+import themeSwitcher from './theme.js';
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+  let theme = themeSwitcher('dark');
+
   return (
     <NavigationContainer style={styles.container} theme={theme}>
       <Tab.Navigator>
