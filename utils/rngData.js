@@ -13,7 +13,16 @@ export default function rngData() {
       cookTime: Math.floor(Math.random() * 10) + 1,
       forks: Math.floor(Math.random() * 10) + 1,
       stars: Math.floor(Math.random() * 10) + 1,
-      ingredientList: [],
+      ingredientList: [
+        "rice",
+        "tofu",
+        "soy sauce",
+        "salt",
+        "pepper",
+        "milk",
+        "cheese",
+      ],
+      instructions: "Stir and bake for 10 min",
     };
     data.push(recipe);
   }

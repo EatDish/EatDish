@@ -11,6 +11,7 @@ Amplify.configure(config);
 // const data = rngData();
 
 const renderItem = ({ item }) => {
+
   return (
   <RecipeCard recipeInfo={item}/>
   );
