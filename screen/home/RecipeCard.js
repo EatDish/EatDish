@@ -8,10 +8,9 @@ export default function RecipeCard({ recipeInfo }) {
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('Recipe', { recipeId: recipeInfo.id})}
+        onPress={() => navigation.navigate('Recipe', recipeInfo)}
       >
         <View style={styles.infoRow} >
-          {/* //TODO: ICON PLACEHOLDER */}
           <Text style={styles.dishName}>{recipeInfo.dishName}</Text>
           <Text style={styles.cuisine}>{recipeInfo.cuisine}</Text>
         </View>
@@ -45,7 +44,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10
   },
   dishName: {
-    fontWeight: 600,
+    fontWeight: 500,
     fontSize: 18,
     paddingRight: 10,
     textTransform: "capitalize"
