@@ -13,25 +13,33 @@ export default function RecipeCard({ recipeInfo }) {
           backgroundColor: colors.card,
           padding: 10,
           margin: 3,
-          color: colors.text
+          color: colors.text,
         }}
-        onPress={() => navigation.navigate("Recipe", recipeInfo)}
+        onPress={() => navigation.navigate("Recipe", { recipe: recipeInfo })}
       >
         <View style={styles.infoRow}>
-          <Text style={{
-            fontWeight: "500",
-            fontSize: 18,
-            paddingRight: 10,
-            textTransform: "capitalize",
-            color: colors.text,
-          }}>{recipeInfo.dishName}</Text>
-          <Text style={{
-            fontWeight: "400",
-            fontSize: 17,
-            fontStyle: "italic",
-            textTransform: "capitalize",
-            color: colors.text,
-          }}>{recipeInfo.cuisine}</Text>
+          <Text
+            style={{
+              fontWeight: "500",
+              fontSize: 18,
+              paddingRight: 10,
+              textTransform: "capitalize",
+              color: colors.text,
+            }}
+          >
+            {recipeInfo.dishName}
+          </Text>
+          <Text
+            style={{
+              fontWeight: "400",
+              fontSize: 17,
+              fontStyle: "italic",
+              textTransform: "capitalize",
+              color: colors.text,
+            }}
+          >
+            {recipeInfo.cuisine}
+          </Text>
         </View>
         <View style={styles.infoRow}>
           <Text
