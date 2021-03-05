@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10
   },
   dishName: {
-    fontWeight: 600,
+    fontWeight: 500,
     fontSize: 18,
     paddingRight: 10,
     textTransform: "capitalize"
