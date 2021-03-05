@@ -8,18 +8,27 @@ import {
 } from "react-native";
 import { CheckBox } from "react-native-elements";
 import { AntDesign } from "@expo/vector-icons";
+import { useTheme } from "@react-navigation/native";
 
 export default function Recipe({ route, navigation }) {
   const [showIngredients, setShowIngredients] = useState(true);
   const [showInstructions, setShowInstructions] = useState(false);
   const [checked, setChecked] = useState(false);
+  const { colors } = useTheme();
   const { recipe } = route.params;
 
   const mappedIngredients = recipe.ingredientList.map((ingredient, index) => (
     <CheckBox
+      containerStyle={{ backgroundColor: "transparent" }}
       key={index}
       title={ingredient}
-      style={styles.ingredient}
+      style={{
+        ...styles.ingredient,
+        backgroundColor: colors.card,
+      }}
+      textStyle={{
+        color: colors.text,
+      }}
       checked={checked[index]}
       onPress={() => {
         setChecked({ ...checked, [index]: !checked[index] });
@@ -29,23 +38,35 @@ export default function Recipe({ route, navigation }) {
 
   return (
     <ScrollView>
-      <View style={styles.container}>
+      <View
+        style={{
+          ...styles.container,
+        }}
+      >
         <View style={styles.infoContainer}>
           <View style={styles.infoRow}>
-            <Text style={styles.dishName}>{recipe.dishName}</Text>
-            <Text style={styles.cuisine}>{recipe.cuisine}</Text>
+            <Text style={{ ...styles.dishName, color: colors.text }}>
+              {recipe.dishName}
+            </Text>
+            <Text style={{ ...styles.cuisine, color: colors.text }}>
+              {recipe.cuisine}
+            </Text>
           </View>
           <View style={styles.infoRow}>
             <Text
-              style={styles.details}
+              style={{ ...styles.details, color: colors.text }}
             >{`Prep time: ${recipe.prepTime} mins`}</Text>
             <Text
-              style={styles.details}
+              style={{ ...styles.details, color: colors.text }}
             >{`Cook time: ${recipe.cookTime} mins`}</Text>
           </View>
           <View style={styles.infoRow}>
-            <Text style={styles.details}>{`Stars: ${recipe.stars}`}</Text>
-            <Text style={styles.details}>{`Forks: ${recipe.forks}`}</Text>
+            <Text
+              style={{ ...styles.details, color: colors.text }}
+            >{`Stars: ${recipe.stars}`}</Text>
+            <Text
+              style={{ ...styles.details, color: colors.text }}
+            >{`Forks: ${recipe.forks}`}</Text>
           </View>
         </View>
         <View style={styles.infoContainer}>
@@ -56,11 +77,13 @@ export default function Recipe({ route, navigation }) {
           >
             <View style={styles.headerContainer}>
               {showIngredients ? (
-                <AntDesign name="down" size={18} color="black" />
+                <AntDesign name="down" size={18} color={colors.text} />
               ) : (
-                <AntDesign name="right" size={18} color="black" />
+                <AntDesign name="right" size={18} color={colors.text} />
               )}
-              <Text style={styles.header}>Ingredients</Text>
+              <Text style={{ ...styles.header, color: colors.text }}>
+                Ingredients
+              </Text>
             </View>
           </TouchableOpacity>
           {showIngredients && <View>{mappedIngredients}</View>}
@@ -73,15 +96,19 @@ export default function Recipe({ route, navigation }) {
           >
             <View style={styles.headerContainer}>
               {showInstructions ? (
-                <AntDesign name="down" size={18} color="black" />
+                <AntDesign name="down" size={18} color={colors.text} />
               ) : (
-                <AntDesign name="right" size={18} color="black" />
+                <AntDesign name="right" size={18} color={colors.text} />
               )}
-              <Text style={styles.header}>Instructions</Text>
+              <Text style={{ ...styles.header, color: colors.text }}>
+                Instructions
+              </Text>
             </View>
           </TouchableOpacity>
           {showInstructions && (
-            <Text style={styles.instructions}>{recipe.instructions}</Text>
+            <Text style={{ ...styles.instructions, color: colors.text }}>
+              {recipe.instructions}
+            </Text>
           )}
         </View>
       </View>
