@@ -1,18 +1,23 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, FlatList, SafeAreaView } from "react-native";
 import Constants from "expo-constants";
+import ExploreRecipeCard from "./ExploreRecipeCard";
+import rngData from "../../utils/rngData";
 
-export default function ExploreScreen() {
+const data = rngData();
+
+const renderItem = ({ item }) => {
+  return <ExploreRecipeCard recipeInfo={item} />;
+};
+
+export default function ExploreScreen({ navigation }) {
   return (
-    <View
-      style={{
-        flex: 1,
-        marginTop: Constants.statusBarHeight,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Explore</Text>
-    </View>
+    <SafeAreaView>
+      <FlatList
+        data={data}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id.toString()}
+      />
+    </SafeAreaView>
   );
 }
