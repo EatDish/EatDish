@@ -6,6 +6,7 @@ import rngData from '../../utils/rngData';
 const data = rngData();
 
 const renderItem = ({ item }) => {
+
   return (
   <RecipeCard recipeInfo={item}/>
   );
