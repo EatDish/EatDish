@@ -2,9 +2,13 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { FontAwesome, Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
+import {
+  FontAwesome,
+  Entypo,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
 import HomeStackScreen from "./screen/home/HomeStackScreen";
-import CreateScreen from './screen/create/CreateScreen';
+import CreateStackScreen from "./screen/create/CreateStackScreen";
 import ExploreStackScreen from "./screen/explore/ExploreStackScreen";
 import themeSwitcher from "./theme.js";
 
@@ -44,10 +48,14 @@ export default function App() {
         />
         <Tab.Screen
           name="Create"
-          component={CreateScreen}
+          component={CreateStackScreen}
           options={{
             tabBarIcon: (e) => (
-              <MaterialCommunityIcons name="chef-hat" size={30} color={e.focused ? theme.colors.primary : theme.colors.text} />
+              <MaterialCommunityIcons
+                name="chef-hat"
+                size={30}
+                color={e.focused ? theme.colors.primary : theme.colors.text}
+              />
             ),
           }}
         />

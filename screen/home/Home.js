@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { useTheme } from "@react-navigation/native";
 
 export default function Home({ navigation }) {
@@ -14,13 +14,16 @@ export default function Home({ navigation }) {
           marginBottom: 5,
           backgroundColor: colors.card,
         }}
-        onPress={() => navigation.navigate('MyRecipes')}
+        onPress={() => navigation.navigate("MyRecipes")}
       >
-      <Text
-        style={{
-          color: colors.text,
-          fontSize: 18,
-        }}>My Recipes</Text>
+        <Text
+          style={{
+            color: colors.text,
+            fontSize: 18,
+          }}
+        >
+          My Recipes
+        </Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={{
@@ -28,12 +31,16 @@ export default function Home({ navigation }) {
           padding: 15,
           backgroundColor: colors.card,
         }}
-        onPress={() => navigation.navigate('SavedRecipes')}
+        onPress={() => navigation.navigate("SavedRecipes")}
       >
-      <Text style={{
-          color: colors.text,
-          fontSize: 18,
-        }}>Saved Recipes</Text>
+        <Text
+          style={{
+            color: colors.text,
+            fontSize: 18,
+          }}
+        >
+          Saved Recipes
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -49,11 +56,10 @@ const styles = StyleSheet.create({
   button: {
     alignItems: "center",
     // backgroundColor: colors.primary,
-    padding: 10
+    padding: 10,
   },
   countContainer: {
     alignItems: "center",
-    padding: 10
-  }
+    padding: 10,
+  },
 });
-
