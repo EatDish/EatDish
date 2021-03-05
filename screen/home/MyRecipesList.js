@@ -1,14 +1,11 @@
 import React, { useEffect, useState} from "react";
 import { View, Text, FlatList, SafeAreaView } from "react-native";
 import RecipeCard from './RecipeCard';
-// import rngData from '../../utils/rngData';
 import { API, graphqlOperation } from 'aws-amplify';
 import { listRecipes } from './../../src/graphql/queries';
 import Amplify from 'aws-amplify';
 import config from '../../aws-exports';
 Amplify.configure(config);
-
-// const data = rngData();
 
 const renderItem = ({ item }) => {
 

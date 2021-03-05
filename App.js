@@ -34,8 +34,8 @@ export default function App() {
           component={ExploreStackScreen}
           options={{
             tabBarIcon: (e) => (
-              <Entypo
-                name="magnifying-glass"
+              <MaterialCommunityIcons
+                name="telescope"
                 size={30}
                 color={e.focused ? theme.colors.primary : theme.colors.text}
               />
