@@ -6,10 +6,6 @@ import { FontAwesome, Entypo } from "@expo/vector-icons";
 import HomeStackScreen from "./screen/home/HomeStackScreen";
 import ExploreScreen from "./screen/explore/ExploreScreen";
 
-import Amplify from 'aws-amplify'
-import config from './aws-exports'
-Amplify.configure(config);
-
 const Tab = createBottomTabNavigator();
 
 export default function App() {
