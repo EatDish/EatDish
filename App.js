@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { FontAwesome, Entypo } from "@expo/vector-icons";
+import { FontAwesome, Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 import HomeStackScreen from "./screen/home/HomeStackScreen";
 import CreateScreen from './screen/create/CreateScreen';
 import ExploreStackScreen from "./screen/explore/ExploreStackScreen";
@@ -47,7 +47,7 @@ export default function App() {
           component={CreateScreen}
           options={{
             tabBarIcon: (e) => (
-              <Entypo name="magnifying-glass" size={30} color={e.focused ? theme.colors.primary : theme.colors.text} />
+              <MaterialCommunityIcons name="chef-hat" size={30} color={e.focused ? theme.colors.primary : theme.colors.text} />
             ),
           }}
         />
