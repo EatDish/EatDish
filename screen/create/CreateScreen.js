@@ -10,7 +10,6 @@ export default function CreateScreen() {
   async function addRecipe() {
     try {
       const recipe = rng();
-      console.log('CreateScreen.js -- recipe:', recipe);
       const result = await API.graphql(graphqlOperation(createRecipe, {input: recipe}))
       console.log('CreateScreen.js -- result:', result);
     } catch (err) {
