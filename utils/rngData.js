@@ -1,5 +1,20 @@
 import "react-native-get-random-values";
+var faker = require('faker');
 const { v4: uuidv4 } = require("uuid");
+
+export function rng() {
+  const recipe = {
+    id: uuidv4(),
+    userName: faker.name.findName(),
+    dishName: faker.commerce.productName(),
+    cuisine: faker.lorem.word(),
+    prepTime: Math.floor(Math.random() * 10) + 1,
+    cookTime: Math.floor(Math.random() * 60) + 1,
+    directions: "Stir and bake for 10 min",
+  };
+  
+return recipe;
+}
 
 export default function rngData() {
   const data = [];
@@ -28,3 +43,4 @@ export default function rngData() {
   }
   return data;
 }
+

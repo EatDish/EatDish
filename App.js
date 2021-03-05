@@ -4,6 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome, Entypo } from "@expo/vector-icons";
 import HomeStackScreen from "./screen/home/HomeStackScreen";
+import CreateScreen from './screen/create/CreateScreen';
 import ExploreStackScreen from "./screen/explore/ExploreStackScreen";
 import themeSwitcher from "./theme.js";
 
@@ -38,6 +39,15 @@ export default function App() {
                 size={30}
                 color={e.focused ? theme.colors.primary : theme.colors.text}
               />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Create"
+          component={CreateScreen}
+          options={{
+            tabBarIcon: (e) => (
+              <Entypo name="magnifying-glass" size={30} color={e.focused ? theme.colors.primary : theme.colors.text} />
             ),
           }}
         />
