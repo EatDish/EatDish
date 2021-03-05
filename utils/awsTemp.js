@@ -33,3 +33,34 @@
 //       console.log('error creating recipe:', err)
 //     }
 //   }
+
+
+// import { onCreaterecipe } from './graphql/subscriptions';
+// import { createRecipe, updateRecipe, deleteRecipe } from './graphql/mutations';
+// import { listRecipes } from './graphql/queries';
+
+
+// const recipes = await API.graphql(graphqlOperation(listRecipes));
+// console.log('awsTemp.js -- recipes:', recipes);
+/* create a recipe */
+// await API.graphql(graphqlOperation(createRecipe, {input: recipe}));
+/* update a recipe */
+// await API.graphql(graphqlOperation(updateRecipe, { input: { id: recipeId, name: "Updated recipe info" }}));
+
+/* delete a recipe */
+// await API.graphql(graphqlOperation(deleteRecipe, { input: { id: recipeId }}));
+
+
+
+// // Subscribe to creation of recipe
+// const subscription = API.graphql(
+//     graphqlOperation(onCreaterecipe)
+// ).subscribe({
+//     next: (recipeData) => {
+//       console.log(recipeData);
+//       // Do something with the data
+//     }
+// });
+
+// // Stop receiving data updates from the subscription
+// subscription.unsubscribe();
