@@ -8,10 +8,9 @@ export default function RecipeCard({ recipeInfo }) {
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('Recipe', { recipeId: recipeInfo.id})}
+        onPress={() => navigation.navigate('Recipe', recipeInfo)}
       >
         <View style={styles.infoRow} >
-          {/* //TODO: ICON PLACEHOLDER */}
           <Text style={styles.dishName}>{recipeInfo.dishName}</Text>
           <Text style={styles.cuisine}>{recipeInfo.cuisine}</Text>
         </View>
