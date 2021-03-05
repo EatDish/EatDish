@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from "@react-navigation/native";
 
 export default function RecipeCard({ recipeInfo }) {
   const navigation = useNavigation();
@@ -8,21 +8,24 @@ export default function RecipeCard({ recipeInfo }) {
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('Recipe', recipeInfo)}
+        onPress={() => navigation.navigate("Recipe", recipeInfo)}
       >
-        <View style={styles.infoRow} >
+        <View style={styles.infoRow}>
           <Text style={styles.dishName}>{recipeInfo.dishName}</Text>
           <Text style={styles.cuisine}>{recipeInfo.cuisine}</Text>
         </View>
-        <View style={styles.infoRow} >
-          <Text style={styles.detail}>{`Prep time: ${recipeInfo.prepTime} mins`}</Text>
-          <Text style={styles.detail}>{`Cook time: ${recipeInfo.cookTime} mins`}</Text>
+        <View style={styles.infoRow}>
+          <Text
+            style={styles.detail}
+          >{`Prep time: ${recipeInfo.prepTime} mins`}</Text>
+          <Text
+            style={styles.detail}
+          >{`Cook time: ${recipeInfo.cookTime} mins`}</Text>
         </View>
       </TouchableOpacity>
     </View>
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {
@@ -40,25 +43,23 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignContent: "flex-start",
     alignItems: "center",
-    paddingLeft: 10
+    paddingLeft: 10,
   },
   dishName: {
-    fontWeight: 500,
+    fontWeight: "500",
     fontSize: 18,
     paddingRight: 10,
-    textTransform: "capitalize"
+    textTransform: "capitalize",
   },
   cuisine: {
-    fontWeight: 400,
+    fontWeight: "400",
     fontSize: 17,
     fontStyle: "italic",
-    flexGrow: "auto",
-    textTransform: "capitalize"
+    textTransform: "capitalize",
   },
   detail: {
-    fontWeight: 400,
+    fontWeight: "400",
     fontSize: 14,
-    paddingRight: 10
-  }
+    paddingRight: 10,
+  },
 });
-

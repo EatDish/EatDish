@@ -1,20 +1,21 @@
-const { v4: uuidv4 } = require('uuid');
+import "react-native-get-random-values";
+const { v4: uuidv4 } = require("uuid");
 
-export default function rngData () {
+export default function rngData() {
   const data = [];
-  for(let i = 0; i < 10; i++) {
+  for (let i = 0; i < 10; i++) {
     const recipe = {
       id: uuidv4(),
-      userName: 'danny',
-      dishName: 'kanban',
-      cuisine: 'sushi',
-      prepTime: Math.floor(Math.random()*10) + 1,
-      cookTime: Math.floor(Math.random()*10) + 1,
-      forks: Math.floor(Math.random()*10) + 1,
-      stars: Math.floor(Math.random()*10) + 1,
+      userName: "danny",
+      dishName: "kanban",
+      cuisine: "sushi",
+      prepTime: Math.floor(Math.random() * 10) + 1,
+      cookTime: Math.floor(Math.random() * 10) + 1,
+      forks: Math.floor(Math.random() * 10) + 1,
+      stars: Math.floor(Math.random() * 10) + 1,
       ingredientList: [],
-    }
-    data.push(recipe)
+    };
+    data.push(recipe);
   }
   return data;
-};
+}
