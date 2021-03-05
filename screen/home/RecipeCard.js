@@ -33,7 +33,6 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: "#DDDDDD",
     padding: 10,
-    borderBottom: "1px solid #FFF"
   },
   infoRow: {
     flex: 1,
