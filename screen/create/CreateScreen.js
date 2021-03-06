@@ -18,6 +18,7 @@ const initialState = {
 export default function CreateScreen() {
   const { colors } = useTheme();
   const [formState, setFormState] = useState(initialState);
+  const [focus, setFocus] = useState(false);
 
   function setInput(key, value) {
     setFormState({ ...formState, [key]: value });
@@ -45,56 +46,70 @@ export default function CreateScreen() {
         onChangeText={(val) => setInput("dishName", val)}
         style={{
           ...styles.input,
-          backgroundColor: colors.card,
+          backgroundColor: focus["dishName"] ? "dimgray" : colors.card,
           color: colors.text,
         }}
         placeholderTextColor={colors.text}
         value={formState.dishName}
+        onFocus={() => setFocus({ ...focus, ["dishName"]: !focus["dishName"] })}
+        onBlur={() => setFocus({ ...focus, ["dishName"]: !focus["dishName"] })}
         placeholder="Dish Name"
       />
       <TextInput
         onChangeText={(val) => setInput("cuisine", val)}
         style={{
           ...styles.input,
-          backgroundColor: colors.card,
+          backgroundColor: focus["cuisine"] ? "dimgray" : colors.card,
           color: colors.text,
         }}
         placeholderTextColor={colors.text}
         value={formState.cuisine}
         placeholder="Cuisine"
+        onFocus={() => setFocus({ ...focus, ["cuisine"]: !focus["cuisine"] })}
+        onBlur={() => setFocus({ ...focus, ["cuisine"]: !focus["cuisine"] })}
       />
       <TextInput
         onChangeText={(val) => setInput("prepTime", val)}
         style={{
           ...styles.input,
-          backgroundColor: colors.card,
+          backgroundColor: focus["prepTime"] ? "dimgray" : colors.card,
           color: colors.text,
         }}
         placeholderTextColor={colors.text}
         value={formState.prepTime}
         placeholder="Prep Time"
+        onFocus={() => setFocus({ ...focus, ["prepTime"]: !focus["prepTime"] })}
+        onBlur={() => setFocus({ ...focus, ["prepTime"]: !focus["prepTime"] })}
       />
       <TextInput
         onChangeText={(val) => setInput("cookTime", val)}
         style={{
           ...styles.input,
-          backgroundColor: colors.card,
+          backgroundColor: focus["cookTime"] ? "dimgray" : colors.card,
           color: colors.text,
         }}
         placeholderTextColor={colors.text}
         value={formState.cookTime}
         placeholder="Cook Time"
+        onFocus={() => setFocus({ ...focus, ["cookTime"]: !focus["cookTime"] })}
+        onBlur={() => setFocus({ ...focus, ["cookTime"]: !focus["cookTime"] })}
       />
       <TextInput
         onChangeText={(val) => setInput("directions", val)}
         style={{
           ...styles.input,
-          backgroundColor: colors.card,
+          backgroundColor: focus["directions"] ? "dimgray" : colors.card,
           color: colors.text,
         }}
         placeholderTextColor={colors.text}
         value={formState.directions}
         placeholder="Directions"
+        onFocus={() =>
+          setFocus({ ...focus, ["directions"]: !focus["directions"] })
+        }
+        onBlur={() =>
+          setFocus({ ...focus, ["directions"]: !focus["directions"] })
+        }
       />
       <Button title="Create Recipe" onPress={addRecipe} />
     </View>
