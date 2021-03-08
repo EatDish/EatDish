@@ -13,31 +13,70 @@ const initialState = {
   prepTime: "",
   cookTime: "",
   directions: "",
+  ingredients: [],
 };
 
 export default function CreateScreen() {
   const { colors } = useTheme();
   const [formState, setFormState] = useState(initialState);
+  const [ingredients, setIngredients] = useState([{ value: null }]);
   const [focus, setFocus] = useState(false);
 
   function setInput(key, value) {
     setFormState({ ...formState, [key]: value });
   }
 
-  async function addRecipe() {
-    try {
-      const recipe = { ...formState };
-      setFormState(initialState);
-      const result = await API.graphql(
-        graphqlOperation(createRecipe, { input: recipe })
-      );
-      console.log("CreateScreen.js -- result:", result);
-      Alert.alert("Recipe Created!", "", [
-        { text: "OK", onPress: () => console.log("ok pressed") },
-      ]);
-    } catch (err) {
-      console.log("error creating recipe:", err);
+  function ingredientChange(event, i) {
+    console.log('CreateScreen.js -- i:', i);
+    console.log('CreateScreen.js -- event:', event);
+    const values = [... ingredients];
+    console.log('CreateScreen.js -- values:', values);
+    if (values[i].value === null || values[i].value === '') {
+      values[i].value = event;
+      setIngredients(values);
+      setInput('ingredients', [...ingredients]);
+      console.log('CreateScreen.js -- values:', values);
+    } else {
+      console.log('CreateScreen.js -- event.target.value:', event);
+      values[i] = { value: event };
+      setIngredients(values);
+      setInput('ingredients', [...ingredients]);
+      console.log('CreateScreen.js -- values:', values);
     }
+  }
+  function ingredientAdd() {
+    const values = [...ingredients];
+    values.push({ value: null })
+    setIngredients(values);
+  }
+
+  function ingredientDelete(i) {
+    const values = [...ingredients];
+    values.splice(i, 1);
+    setIngredients(values);
+    setInput('ingredients', [...ingredients])
+  }
+
+  function createUI () {
+
+  }
+
+  async function addRecipe() {
+    //validate the ingredients
+    // try {
+      const recipe = { ...formState };
+      console.log('CreateScreen.js -- recipe:', recipe);
+      setFormState(initialState);
+    //   const result = await API.graphql(
+    //     graphqlOperation(createRecipe, { input: recipe })
+    //   );
+    //   console.log("CreateScreen.js -- result:", result);
+    //   Alert.alert("Recipe Created!", "", [
+    //     { text: "OK", onPress: () => console.log("ok pressed") },
+    //   ]);
+    // } catch (err) {
+    //   console.log("error creating recipe:", err);
+    // }
   }
 
   return (
@@ -111,6 +150,34 @@ export default function CreateScreen() {
           setFocus({ ...focus, ["directions"]: !focus["directions"] })
         }
       />
+      <Button title="Add an Ingredient" onPress={ingredientAdd} />
+      {ingredients.map((ingredient, i) => {
+        return (
+          <View key={`${ingredient}-${i}`}>
+            <TextInput
+              onChangeText={(e) => {
+                console.log('in the change', e);
+                return ingredientChange(e, i);
+              }}
+              value={ingredient.value || ''}
+              placeholderTextColor={colors.text}
+              placeholder="Ingredient"
+              style={{
+                ...styles.input,
+                backgroundColor: focus["ingredient"] ? "dimgray" : colors.card,
+                color: colors.text,
+              }}
+              onFocus={() =>
+                setFocus({ ...focus, ["ingredient"]: !focus["ingredient"] })
+              }
+              onBlur={() =>
+                setFocus({ ...focus, ["ingredient"]: !focus["ingredient"] })
+              }
+            />
+            <Button title="Delete an Ingredient" onPress={(i) => ingredientDelete(i)} />
+          </View>
+          );
+        })}
       <Button title="Create Recipe" onPress={addRecipe} />
     </View>
   );
