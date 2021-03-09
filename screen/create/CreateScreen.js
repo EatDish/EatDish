@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, Button, StyleSheet, TextInput, Alert } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import Constants from "expo-constants";
@@ -26,23 +26,11 @@ export default function CreateScreen() {
     setFormState({ ...formState, [key]: value });
   }
 
-  function ingredientChange(event, i) {
-    console.log('CreateScreen.js -- i:', i);
-    console.log('CreateScreen.js -- event:', event);
+  function ingredientChange(text, i) {
     const values = [... ingredients];
-    console.log('CreateScreen.js -- values:', values);
-    if (values[i].value === null || values[i].value === '') {
-      values[i].value = event;
-      setIngredients(values);
-      setInput('ingredients', [...ingredients]);
-      console.log('CreateScreen.js -- values:', values);
-    } else {
-      console.log('CreateScreen.js -- event.target.value:', event);
-      values[i] = { value: event };
-      setIngredients(values);
-      setInput('ingredients', [...ingredients]);
-      console.log('CreateScreen.js -- values:', values);
-    }
+    values[i].value = text;
+    setIngredients(values);
+    setInput('ingredients', [...values]);
   }
   function ingredientAdd() {
     const values = [...ingredients];
@@ -51,14 +39,15 @@ export default function CreateScreen() {
   }
 
   function ingredientDelete(i) {
-    const values = [...ingredients];
-    values.splice(i, 1);
-    setIngredients(values);
-    setInput('ingredients', [...ingredients])
-  }
-
-  function createUI () {
-
+    if(ingredients.length === 1) {
+      setIngredients([{value: null}]);
+      setInput('ingredients', [{value: null}])
+    } else {
+      const values = [...ingredients];
+      values.splice(i, 1);
+      setIngredients(values);
+      setInput('ingredients', [...values])
+    }
   }
 
   async function addRecipe() {
@@ -66,7 +55,9 @@ export default function CreateScreen() {
     // try {
       const recipe = { ...formState };
       console.log('CreateScreen.js -- recipe:', recipe);
+      // clear form after success
       setFormState(initialState);
+      setIngredients([{value: null}]);
     //   const result = await API.graphql(
     //     graphqlOperation(createRecipe, { input: recipe })
     //   );
@@ -77,6 +68,7 @@ export default function CreateScreen() {
     // } catch (err) {
     //   console.log("error creating recipe:", err);
     // }
+    return;
   }
 
   return (
@@ -150,16 +142,15 @@ export default function CreateScreen() {
           setFocus({ ...focus, ["directions"]: !focus["directions"] })
         }
       />
-      <Button title="Add an Ingredient" onPress={ingredientAdd} />
+      <Button title="Add Ingredient" onPress={ingredientAdd} />
       {ingredients.map((ingredient, i) => {
         return (
           <View key={`${ingredient}-${i}`}>
             <TextInput
-              onChangeText={(e) => {
-                console.log('in the change', e);
-                return ingredientChange(e, i);
+              onChangeText={(text) => {
+                return ingredientChange(text, i);
               }}
-              value={ingredient.value || ''}
+              value={ingredients[i].value || ''}
               placeholderTextColor={colors.text}
               placeholder="Ingredient"
               style={{
@@ -174,7 +165,7 @@ export default function CreateScreen() {
                 setFocus({ ...focus, ["ingredient"]: !focus["ingredient"] })
               }
             />
-            <Button title="Delete an Ingredient" onPress={(i) => ingredientDelete(i)} />
+            <Button title="Delete an Ingredient" onPress={() => ingredientDelete(i)} />
           </View>
           );
         })}
