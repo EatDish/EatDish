@@ -11,6 +11,22 @@ export const onCreateRecipe = /* GraphQL */ `
       prepTime
       cookTime
       directions
+      ingredients {
+        items {
+          id
+          name
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        nextToken
+        startedAt
+      }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -26,6 +42,22 @@ export const onUpdateRecipe = /* GraphQL */ `
       prepTime
       cookTime
       directions
+      ingredients {
+        items {
+          id
+          name
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        nextToken
+        startedAt
+      }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -41,6 +73,115 @@ export const onDeleteRecipe = /* GraphQL */ `
       prepTime
       cookTime
       directions
+      ingredients {
+        items {
+          id
+          name
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        nextToken
+        startedAt
+      }
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateIngredient = /* GraphQL */ `
+  subscription OnCreateIngredient {
+    onCreateIngredient {
+      id
+      name
+      recipe {
+        id
+        userName
+        dishName
+        cuisine
+        prepTime
+        cookTime
+        directions
+        ingredients {
+          nextToken
+          startedAt
+        }
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateIngredient = /* GraphQL */ `
+  subscription OnUpdateIngredient {
+    onUpdateIngredient {
+      id
+      name
+      recipe {
+        id
+        userName
+        dishName
+        cuisine
+        prepTime
+        cookTime
+        directions
+        ingredients {
+          nextToken
+          startedAt
+        }
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteIngredient = /* GraphQL */ `
+  subscription OnDeleteIngredient {
+    onDeleteIngredient {
+      id
+      name
+      recipe {
+        id
+        userName
+        dishName
+        cuisine
+        prepTime
+        cookTime
+        directions
+        ingredients {
+          nextToken
+          startedAt
+        }
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }

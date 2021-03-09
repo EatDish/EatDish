@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import { View, Text, Button, StyleSheet, TextInput, Alert } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import Constants from "expo-constants";
-import { DataStore, graphqlOperation, API } from "aws-amplify";
-import { createRecipe } from "./../../src/graphql/mutations";
-import { rng } from "../../utils/rngData";
+import { graphqlOperation, API } from "aws-amplify";
+import { createIngredient, createRecipe } from "./../../src/graphql/mutations";
 
 const initialState = {
   userName: "Danny",
@@ -51,23 +50,49 @@ export default function CreateScreen() {
   }
 
   async function addRecipe() {
+    // if it exists have to have a new version
     //validate the ingredients
-    // try {
+    // do a batch for ingredient update
+    try {
       const recipe = { ...formState };
       console.log('CreateScreen.js -- recipe:', recipe);
+      
+      const result = await API.graphql(
+        graphqlOperation(createRecipe, { 
+      input: { 
+        userName: recipe.userName,
+        dishName: recipe.dishName,
+        cuisine: recipe.cuisine,
+        prepTime: parseInt(recipe.prepTime, 10),
+        cookTime: parseInt(recipe.cookTime, 10),
+        directions: recipe.directions,
+      }
+    })
+      );
+      console.log("CreateScreen.js -- result:", result.createRecipe.id);
+      const ingredClean = recipe.ingredients.map(e => e.value);
+
+      const ingredResultArray = ingredClean.map(async (ingredient) => {
+        const mapResult = await API.graphql(graphqlOperation(createIngredient, {
+        input: {
+          name: ingredient,
+          id: result.createRecipe.id
+        }
+      }))
+      return mapResult;
+    });
+
+      const promiseFinish = await Promise.all(ingredResultArray);
+      console.log('CreateScreen.js -- promiseFinish:', promiseFinish);
+      Alert.alert("Recipe Created!", "", [
+        { text: "OK", onPress: () => console.log("ok pressed") },
+      ]);
       // clear form after success
       setFormState(initialState);
       setIngredients([{value: null}]);
-    //   const result = await API.graphql(
-    //     graphqlOperation(createRecipe, { input: recipe })
-    //   );
-    //   console.log("CreateScreen.js -- result:", result);
-    //   Alert.alert("Recipe Created!", "", [
-    //     { text: "OK", onPress: () => console.log("ok pressed") },
-    //   ]);
-    // } catch (err) {
-    //   console.log("error creating recipe:", err);
-    // }
+    } catch (err) {
+      console.log("error creating recipe:", err);
+    }
     return;
   }
 

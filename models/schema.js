@@ -51,6 +51,20 @@ export const schema = {
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
+                },
+                "ingredients": {
+                    "name": "ingredients",
+                    "isArray": true,
+                    "type": {
+                        "model": "Ingredient"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": false,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": "recipe"
+                    }
                 }
             },
             "syncable": true,
@@ -61,9 +75,49 @@ export const schema = {
                     "properties": {}
                 }
             ]
+        },
+        "Ingredient": {
+            "name": "Ingredient",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "name": {
+                    "name": "name",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "recipe": {
+                    "name": "recipe",
+                    "isArray": false,
+                    "type": {
+                        "model": "Recipe"
+                    },
+                    "isRequired": true,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetName": "ingredientRecipeId"
+                    }
+                }
+            },
+            "syncable": true,
+            "pluralName": "Ingredients",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                }
+            ]
         }
     },
     "enums": {},
     "nonModels": {},
-    "version": "54059de3729ea0ddbe352d4d2ff488de"
+    "version": "4e040458736d15c4af4792f8988830ae"
 };
