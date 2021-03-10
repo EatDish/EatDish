@@ -71,12 +71,13 @@ export default function CreateScreen() {
       );
       console.log("CreateScreen.js -- result id:", result);
       const resultRecipe = result.data.createRecipe;
-      console.log('CreateScreen.js -- result.data.createRecipe:', recipe);
+      console.log('CreateScreen.js -- result.data.createRecipe:', resultRecipe.id);
       const ingredResult = await API.graphql(graphqlOperation(createIngredient, {
       input: {
         name: recipe.ingredients[0],
-        id: resultRecipe.id
+        ingredientRecipeId: resultRecipe.id
       }}));
+      console.log('CreateScreen.js -- ingredResult.data:', ingredResult.data);
       Alert.alert("Recipe Created!", "", [
         { text: "OK", onPress: () => console.log("ok pressed") },
       ]);
