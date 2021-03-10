@@ -6,11 +6,11 @@ type Recipe @model {
 	prepTime: Int
 	cookTime: Int
 	directions: String
-	ingredients: [Ingredient] @connection(name: "RecipeIngredientConnection")
+	ingredients: [Ingredient] @connection(name: "RecipeIngredients")
 }
 
 type Ingredient @model {
 	id: ID!
 	name: String!
-	recipe: Recipe! @connection(name: "RecipeIngredientConnection")
+	recipe: Recipe @connection(name: "RecipeIngredients")
 }

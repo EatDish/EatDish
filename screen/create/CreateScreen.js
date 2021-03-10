@@ -69,21 +69,14 @@ export default function CreateScreen() {
       }
     })
       );
-      console.log("CreateScreen.js -- result:", result.createRecipe.id);
-      const ingredClean = recipe.ingredients.map(e => e.value);
-
-      const ingredResultArray = ingredClean.map(async (ingredient) => {
-        const mapResult = await API.graphql(graphqlOperation(createIngredient, {
-        input: {
-          name: ingredient,
-          id: result.createRecipe.id
-        }
-      }))
-      return mapResult;
-    });
-
-      const promiseFinish = await Promise.all(ingredResultArray);
-      console.log('CreateScreen.js -- promiseFinish:', promiseFinish);
+      console.log("CreateScreen.js -- result id:", result);
+      const resultRecipe = result.data.createRecipe;
+      console.log('CreateScreen.js -- result.data.createRecipe:', recipe);
+      const ingredResult = await API.graphql(graphqlOperation(createIngredient, {
+      input: {
+        name: recipe.ingredients[0],
+        id: resultRecipe.id
+      }}));
       Alert.alert("Recipe Created!", "", [
         { text: "OK", onPress: () => console.log("ok pressed") },
       ]);

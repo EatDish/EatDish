@@ -12,7 +12,7 @@ export declare class Recipe {
   readonly prepTime?: number;
   readonly cookTime?: number;
   readonly directions?: string;
-  readonly ingredients: (Ingredient | null)[];
+  readonly ingredients?: (Ingredient | null)[];
   constructor(init: ModelInit<Recipe>);
   static copyOf(source: Recipe, mutator: (draft: MutableModel<Recipe>) => MutableModel<Recipe> | void): Recipe;
 }

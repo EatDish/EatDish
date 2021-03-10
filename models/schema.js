@@ -60,7 +60,7 @@ export const schema = {
                     },
                     "isRequired": false,
                     "attributes": [],
-                    "isArrayNullable": false,
+                    "isArrayNullable": true,
                     "association": {
                         "connectionType": "HAS_MANY",
                         "associatedWith": "recipe"
@@ -119,5 +119,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "4e040458736d15c4af4792f8988830ae"
+    "version": "6df0f9b97a7101a14d72f8f106e71f2e"
 };

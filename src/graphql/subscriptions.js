@@ -15,18 +15,11 @@ export const onCreateRecipe = /* GraphQL */ `
         items {
           id
           name
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
-        startedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -46,18 +39,11 @@ export const onUpdateRecipe = /* GraphQL */ `
         items {
           id
           name
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
-        startedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -77,18 +63,11 @@ export const onDeleteRecipe = /* GraphQL */ `
         items {
           id
           name
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
-        startedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -109,17 +88,10 @@ export const onCreateIngredient = /* GraphQL */ `
         directions
         ingredients {
           nextToken
-          startedAt
         }
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -140,17 +112,10 @@ export const onUpdateIngredient = /* GraphQL */ `
         directions
         ingredients {
           nextToken
-          startedAt
         }
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -171,17 +136,10 @@ export const onDeleteIngredient = /* GraphQL */ `
         directions
         ingredients {
           nextToken
-          startedAt
         }
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
