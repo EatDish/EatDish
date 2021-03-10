@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, Button, StyleSheet, TextInput, Alert } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import Constants from "expo-constants";
-import { DataStore, graphqlOperation, API } from "aws-amplify";
-import { createRecipe } from "./../../src/graphql/mutations";
-import { rng } from "../../utils/rngData";
+import { graphqlOperation, API } from "aws-amplify";
+import { createIngredient, createRecipe } from "./../../src/graphql/mutations";
 
 const initialState = {
   userName: "Danny",
@@ -13,31 +12,82 @@ const initialState = {
   prepTime: "",
   cookTime: "",
   directions: "",
+  ingredients: [],
 };
 
 export default function CreateScreen() {
   const { colors } = useTheme();
   const [formState, setFormState] = useState(initialState);
+  const [ingredients, setIngredients] = useState([{ value: null }]);
   const [focus, setFocus] = useState(false);
 
   function setInput(key, value) {
     setFormState({ ...formState, [key]: value });
   }
 
+  function ingredientChange(text, i) {
+    const values = [... ingredients];
+    values[i].value = text;
+    setIngredients(values);
+    setInput('ingredients', [...values]);
+  }
+  function ingredientAdd() {
+    const values = [...ingredients];
+    values.push({ value: null })
+    setIngredients(values);
+  }
+
+  function ingredientDelete(i) {
+    if(ingredients.length === 1) {
+      setIngredients([{value: null}]);
+      setInput('ingredients', [{value: null}])
+    } else {
+      const values = [...ingredients];
+      values.splice(i, 1);
+      setIngredients(values);
+      setInput('ingredients', [...values])
+    }
+  }
+
   async function addRecipe() {
+    // if it exists have to have a new version
+    //validate the ingredients
+    // do a batch for ingredient update
     try {
       const recipe = { ...formState };
-      setFormState(initialState);
+      console.log('CreateScreen.js -- recipe:', recipe);
+      
       const result = await API.graphql(
-        graphqlOperation(createRecipe, { input: recipe })
+        graphqlOperation(createRecipe, { 
+      input: { 
+        userName: recipe.userName,
+        dishName: recipe.dishName,
+        cuisine: recipe.cuisine,
+        prepTime: parseInt(recipe.prepTime, 10),
+        cookTime: parseInt(recipe.cookTime, 10),
+        directions: recipe.directions,
+      }
+    })
       );
-      console.log("CreateScreen.js -- result:", result);
+      console.log("CreateScreen.js -- result id:", result);
+      const resultRecipe = result.data.createRecipe;
+      console.log('CreateScreen.js -- result.data.createRecipe:', resultRecipe.id);
+      const ingredResult = await API.graphql(graphqlOperation(createIngredient, {
+      input: {
+        name: recipe.ingredients[0].value,
+        ingredientRecipeId: resultRecipe.id
+      }}));
+      console.log('CreateScreen.js -- ingredResult.data:', ingredResult.data);
       Alert.alert("Recipe Created!", "", [
         { text: "OK", onPress: () => console.log("ok pressed") },
       ]);
+      // clear form after success
+      setFormState(initialState);
+      setIngredients([{value: null}]);
     } catch (err) {
       console.log("error creating recipe:", err);
     }
+    return;
   }
 
   return (
@@ -111,6 +161,33 @@ export default function CreateScreen() {
           setFocus({ ...focus, ["directions"]: !focus["directions"] })
         }
       />
+      <Button title="Add Ingredient" onPress={ingredientAdd} />
+      {ingredients.map((ingredient, i) => {
+        return (
+          <View key={`${ingredient}-${i}`}>
+            <TextInput
+              onChangeText={(text) => {
+                return ingredientChange(text, i);
+              }}
+              value={ingredients[i].value || ''}
+              placeholderTextColor={colors.text}
+              placeholder="Ingredient"
+              style={{
+                ...styles.input,
+                backgroundColor: focus["ingredient"] ? "dimgray" : colors.card,
+                color: colors.text,
+              }}
+              onFocus={() =>
+                setFocus({ ...focus, ["ingredient"]: !focus["ingredient"] })
+              }
+              onBlur={() =>
+                setFocus({ ...focus, ["ingredient"]: !focus["ingredient"] })
+              }
+            />
+            <Button title="Delete an Ingredient" onPress={() => ingredientDelete(i)} />
+          </View>
+          );
+        })}
       <Button title="Create Recipe" onPress={addRecipe} />
     </View>
   );

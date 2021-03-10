@@ -7,6 +7,25 @@ import Amplify from 'aws-amplify';
 import config from '../../aws-exports';
 Amplify.configure(config);
 
+const customQuery = `query RecipeIngredientListName {
+  listRecipes {
+    items {
+      cookTime
+      createdAt
+      cuisine
+      directions
+      dishName
+      id
+      ingredients {
+        items {
+          name
+        }
+      }
+    }
+  }
+}
+`;
+
 const renderItem = ({ item }) => {
 
   return (
@@ -23,8 +42,10 @@ export default function MyRecipesList() {
 
   async function fetchRecipes() {
     try {
-      const recipeData = await API.graphql(graphqlOperation(listRecipes))
+      const recipeData = await API.graphql(graphqlOperation(customQuery))
       const recipes = recipeData.data.listRecipes.items
+      console.log('MyRecipesList.js -- recipeData.data:', recipeData.data);
+      console.log('MyRecipesList.js -- recipes:', recipes);
       setRecipes(recipes)
     } catch (err) { console.log('error fetching recipes') }
   }

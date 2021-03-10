@@ -14,6 +14,15 @@ export const createRecipe = /* GraphQL */ `
       prepTime
       cookTime
       directions
+      ingredients {
+        items {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -32,6 +41,15 @@ export const updateRecipe = /* GraphQL */ `
       prepTime
       cookTime
       directions
+      ingredients {
+        items {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -50,6 +68,96 @@ export const deleteRecipe = /* GraphQL */ `
       prepTime
       cookTime
       directions
+      ingredients {
+        items {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createIngredient = /* GraphQL */ `
+  mutation CreateIngredient(
+    $input: CreateIngredientInput!
+    $condition: ModelIngredientConditionInput
+  ) {
+    createIngredient(input: $input, condition: $condition) {
+      id
+      name
+      recipe {
+        id
+        userName
+        dishName
+        cuisine
+        prepTime
+        cookTime
+        directions
+        ingredients {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateIngredient = /* GraphQL */ `
+  mutation UpdateIngredient(
+    $input: UpdateIngredientInput!
+    $condition: ModelIngredientConditionInput
+  ) {
+    updateIngredient(input: $input, condition: $condition) {
+      id
+      name
+      recipe {
+        id
+        userName
+        dishName
+        cuisine
+        prepTime
+        cookTime
+        directions
+        ingredients {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteIngredient = /* GraphQL */ `
+  mutation DeleteIngredient(
+    $input: DeleteIngredientInput!
+    $condition: ModelIngredientConditionInput
+  ) {
+    deleteIngredient(input: $input, condition: $condition) {
+      id
+      name
+      recipe {
+        id
+        userName
+        dishName
+        cuisine
+        prepTime
+        cookTime
+        directions
+        ingredients {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
