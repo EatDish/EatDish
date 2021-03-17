@@ -41,9 +41,6 @@ export const listRecipes = /* GraphQL */ `
         cookTime
         directions
         ingredients {
-          items {
-            name
-          }
           nextToken
         }
         createdAt

@@ -7,10 +7,6 @@ import Amplify from 'aws-amplify';
 import config from '../../aws-exports';
 Amplify.configure(config);
 
-const renderItem = ({ item }) => {
-  return <RecipeCard recipeInfo={item} />;
-};
-
 export default function SavedRecipesList() {
   const [recipes, setRecipes] = useState([]);
 
@@ -29,8 +25,14 @@ export default function SavedRecipesList() {
     <SafeAreaView>
       <FlatList
         data={recipes}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={item => item.id.toString()}
+        renderItem={({ item }) => {
+          return (
+            <RecipeCard 
+              onPress={() => navigation.push('Recipe', { recipeId: item.id })}
+              recipeInfo={item}/>
+          );
+        }}
       />
     </SafeAreaView>
   );
