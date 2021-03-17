@@ -38,7 +38,6 @@ export default function MyRecipesList() {
     try {
       const recipeData = await API.graphql(graphqlOperation(customQuery))
       const recipes = recipeData.data.listRecipes.items
-      console.log('MyRecipesList.js -- recipeData.data:', recipeData.data);
       console.log('MyRecipesList.js -- recipes:', recipes);
       setRecipes(recipes)
     } catch (err) { console.log('error fetching recipes', err) }
