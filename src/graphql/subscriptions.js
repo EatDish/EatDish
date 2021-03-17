@@ -10,15 +10,16 @@ export const onCreateRecipe = /* GraphQL */ `
       cuisine
       prepTime
       cookTime
+      stars
+      forks
       directions
       ingredients {
-        items {
-          id
-          name
-          createdAt
-          updatedAt
-        }
-        nextToken
+        id
+        name
+        measurement
+        amount
+        createdAt
+        updatedAt
       }
       createdAt
       updatedAt
@@ -34,15 +35,16 @@ export const onUpdateRecipe = /* GraphQL */ `
       cuisine
       prepTime
       cookTime
+      stars
+      forks
       directions
       ingredients {
-        items {
-          id
-          name
-          createdAt
-          updatedAt
-        }
-        nextToken
+        id
+        name
+        measurement
+        amount
+        createdAt
+        updatedAt
       }
       createdAt
       updatedAt
@@ -58,15 +60,16 @@ export const onDeleteRecipe = /* GraphQL */ `
       cuisine
       prepTime
       cookTime
+      stars
+      forks
       directions
       ingredients {
-        items {
-          id
-          name
-          createdAt
-          updatedAt
-        }
-        nextToken
+        id
+        name
+        measurement
+        amount
+        createdAt
+        updatedAt
       }
       createdAt
       updatedAt
@@ -78,20 +81,8 @@ export const onCreateIngredient = /* GraphQL */ `
     onCreateIngredient {
       id
       name
-      recipe {
-        id
-        userName
-        dishName
-        cuisine
-        prepTime
-        cookTime
-        directions
-        ingredients {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
+      measurement
+      amount
       createdAt
       updatedAt
     }
@@ -102,20 +93,8 @@ export const onUpdateIngredient = /* GraphQL */ `
     onUpdateIngredient {
       id
       name
-      recipe {
-        id
-        userName
-        dishName
-        cuisine
-        prepTime
-        cookTime
-        directions
-        ingredients {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
+      measurement
+      amount
       createdAt
       updatedAt
     }
@@ -126,20 +105,8 @@ export const onDeleteIngredient = /* GraphQL */ `
     onDeleteIngredient {
       id
       name
-      recipe {
-        id
-        userName
-        dishName
-        cuisine
-        prepTime
-        cookTime
-        directions
-        ingredients {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
+      measurement
+      amount
       createdAt
       updatedAt
     }

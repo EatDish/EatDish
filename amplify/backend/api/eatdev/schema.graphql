@@ -9,10 +9,17 @@ type Recipe @model {
 	ingredients: [Ingredient] @connection(name: "RecipeIngredients")
 }
 
-type Ingredient @model {
+<<<<<<< HEAD
+type Ingredient @model{
 	id: ID!
 	name: String!
 	measurement: String
+=======
+type Ingredient @model {
+	id: ID!
+	name: String!
+	measurement: String!
+>>>>>>> 1106c93 (new instruction table, new ingredient columns amount and measurements)
 	amount: Int!
 	recipe: Recipe @connection(name: "RecipeIngredients")
 }
@@ -22,4 +29,8 @@ type Instruction @model {
 	stepNumber: Int!
 	stepInstruction: String!
 	recipe: Recipe @connection(name: "RecipeInstructions")
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 1106c93 (new instruction table, new ingredient columns amount and measurements)
