@@ -16,6 +16,7 @@ export default function Recipe({ route, navigation }) {
   const [checked, setChecked] = useState(false);
   const { colors } = useTheme();
   const { recipe } = route.params;
+  console.log('Recipe.js -- recipe:', recipe);
 
   const recipeList = recipe.ingredients.items;
   const mappedIngredients = recipeList.map((ingredient, index) => (

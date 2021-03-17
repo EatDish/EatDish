@@ -9,16 +9,12 @@ import {
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import Constants from "expo-constants";
-import ExploreRecipeCard from "./ExploreRecipeCard";
+import RecipeCard from '../home/RecipeCard';
 import { API, graphqlOperation } from "aws-amplify";
-import { listRecipes } from "./../../src/graphql/queries";
+import listQuery from '../../utils/customQueries/listQuery';
 import Amplify from "aws-amplify";
 import config from "../../aws-exports";
 Amplify.configure(config);
-
-const renderItem = ({ item }) => {
-  return <ExploreRecipeCard recipeInfo={item} />;
-};
 
 export default function ExploreScreen({ navigation }) {
   const { colors } = useTheme();
@@ -28,9 +24,11 @@ export default function ExploreScreen({ navigation }) {
   const [focus, setFocus] = useState(false);
 
   const filterList = (list) => {
+    console.log('ExploreScreen.js -- list:', list);
+    
     return list.filter(
       (listItem) =>
-        listItem.cuisine.toLowerCase().includes(search.toLowerCase()) ||
+        listItem.cuisine?.toLowerCase().includes(search?.toLowerCase()) ||
         listItem.dishName.toLowerCase().includes(search.toLowerCase())
     );
   };
@@ -45,7 +43,7 @@ export default function ExploreScreen({ navigation }) {
 
   async function fetchRecipes() {
     try {
-      const recipeData = await API.graphql(graphqlOperation(listRecipes));
+      const recipeData = await API.graphql(graphqlOperation(listQuery));
       const recipes = recipeData.data.listRecipes.items;
       setRecipes(recipes);
     } catch (err) {
@@ -79,8 +77,14 @@ export default function ExploreScreen({ navigation }) {
       </View>
       <FlatList
         data={filtered?.length === 0 ? recipes : filtered}
-        renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => {
+          return (
+            <RecipeCard 
+              onPress={() => navigation.push('Recipe', { recipeId: item.id })}
+              recipeInfo={item}/>
+            );
+        }}
       />
     </SafeAreaView>
   );
