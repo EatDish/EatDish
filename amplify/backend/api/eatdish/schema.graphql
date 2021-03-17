@@ -14,3 +14,12 @@ type Ingredient @model {
 	name: String!
 	recipe: Recipe @connection(name: "RecipeIngredients")
 }
+
+type IngredientConnection {
+	items: [Ingredient]
+	nextToken: String
+}
+
+type Query {
+	ingredientsForRecipe(recipeId: ID!, limit: Int, nextToken: String): IngredientConnection
+}

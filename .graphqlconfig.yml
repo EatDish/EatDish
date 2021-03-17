@@ -1,6 +1,6 @@
 projects:
   eatdish:
-    schemaPath: graphql/schema.json
+    schemaPath: amplify/backend/api/eatdish/build/schema.graphql
     includes:
       - src/graphql/**/*.js
     excludes:
