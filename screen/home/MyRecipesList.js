@@ -7,34 +7,28 @@ import Amplify from 'aws-amplify';
 import config from '../../aws-exports';
 Amplify.configure(config);
 
-const customQuery = `query RecipeIngredientListName {
-  listRecipes {
-    items {
-      cookTime
-      createdAt
-      cuisine
-      directions
-      dishName
-      id
-      ingredients {
-        items {
-          name
+
+
+export default function MyRecipesList() {
+  const [recipes, setRecipes] = useState([]);
+  const customQuery = `query RecipeIngredientListName {
+    listRecipes {
+      items {
+        cookTime
+        createdAt
+        cuisine
+        directions
+        dishName
+        id
+        ingredients {
+          items {
+            name
+          }
         }
       }
     }
   }
-}
-`;
-
-const renderItem = ({ item }) => {
-
-  return (
-  <RecipeCard recipeInfo={item}/>
-  );
-}
-
-export default function MyRecipesList() {
-  const [recipes, setRecipes] = useState([]);
+  `;
 
   useEffect(() => {
     fetchRecipes()
@@ -47,14 +41,20 @@ export default function MyRecipesList() {
       console.log('MyRecipesList.js -- recipeData.data:', recipeData.data);
       console.log('MyRecipesList.js -- recipes:', recipes);
       setRecipes(recipes)
-    } catch (err) { console.log('error fetching recipes') }
+    } catch (err) { console.log('error fetching recipes', err) }
   }
   return (
     <SafeAreaView>
       <FlatList
         data={recipes}
-        renderItem={renderItem}
         keyExtractor={item => item.id.toString()}
+        renderItem={({ item }) => {
+          return (
+            <RecipeCard 
+              onPress={() => navigation.push('Recipe', { recipeId: item.id })}
+              recipeInfo={item}/>
+            );
+        }}
       />
     </SafeAreaView>
   );
