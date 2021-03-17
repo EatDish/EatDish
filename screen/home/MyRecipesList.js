@@ -2,7 +2,6 @@ import React, { useEffect, useState} from "react";
 import { View, Text, FlatList, SafeAreaView } from "react-native";
 import RecipeCard from './RecipeCard';
 import { API, graphqlOperation } from 'aws-amplify';
-import { listRecipes } from './../../src/graphql/queries';
 import Amplify from 'aws-amplify';
 import config from '../../aws-exports';
 import listQuery from "../../utils/customQueries/listQuery";
