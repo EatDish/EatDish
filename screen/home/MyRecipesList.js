@@ -29,7 +29,6 @@ export default function MyRecipesList({ navigation }) {
         renderItem={({ item }) => {
           return (
             <RecipeCard 
-              onPress={() => navigation.push('Recipe', { recipeId: item.id })}
               recipeInfo={item}/>
             );
         }}
