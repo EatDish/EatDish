@@ -16,22 +16,14 @@ export default function Recipe({ route, navigation }) {
   const [checked, setChecked] = useState(false);
   const { colors } = useTheme();
   const { recipe } = route.params;
-  console.log("Recipe.js -- recipe:", recipe);
+  console.log('Recipe.js -- recipe:', recipe);
 
-  const ingredientList = [
-    "rice",
-    "tofu",
-    "soy sauce",
-    "salt",
-    "pepper",
-    "milk",
-    "cheese",
-  ];
-  const mappedIngredients = ingredientList.map((ingredient, index) => (
+  const recipeList = recipe.ingredients.items;
+  const mappedIngredients = recipeList.map((ingredient, index) => (
     <CheckBox
       containerStyle={{ backgroundColor: "transparent" }}
       key={index}
-      title={ingredient}
+      title={ingredient.name}
       style={{
         ...styles.ingredient,
         backgroundColor: colors.card,
