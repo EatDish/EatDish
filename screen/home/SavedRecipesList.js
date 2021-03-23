@@ -19,7 +19,7 @@ export default function SavedRecipesList() {
       const recipeData = await API.graphql(graphqlOperation(listQuery))
       const recipes = recipeData.data.listRecipes.items
       setRecipes(recipes)
-    } catch (err) { console.log('error fetching recipes') }
+    } catch (err) { console.log('error fetching recipes', err) }
   }
   return (
     <SafeAreaView>
