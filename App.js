@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, StatusBar } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
@@ -19,6 +19,9 @@ export default function App() {
 
   return (
     <NavigationContainer style={styles.container} theme={theme}>
+      <StatusBar
+        color='white'
+      />
       <Tab.Navigator>
         <Tab.Screen
           name="Home"
