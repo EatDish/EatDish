@@ -7,10 +7,8 @@ import {
   Entypo,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
-import HomeStackScreen from "./screen/home/HomeStackScreen";
-import CreateStackScreen from "./screen/create/CreateStackScreen";
-import ExploreStackScreen from "./screen/explore/ExploreStackScreen";
-import themeSwitcher from "./theme.js";
+import { HomeStackScreen, CreateStackScreen, ExploreStackScreen } from "./src/navigation/index.js";
+import themeSwitcher from "./src/theme.js";
 
 const Tab = createBottomTabNavigator();
 
