@@ -4,10 +4,10 @@ import RecipeCard from "./RecipeCard";
 import { API, graphqlOperation } from 'aws-amplify';
 import listQuery from "../../utils/customQueries/listQuery";
 import Amplify from 'aws-amplify';
-import config from '../../aws-exports';
+import config from '../../../aws-exports';
 Amplify.configure(config);
 
-export default function SavedRecipesList() {
+export default function Favorites() {
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
