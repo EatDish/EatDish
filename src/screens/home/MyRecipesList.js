@@ -3,7 +3,7 @@ import { FlatList, SafeAreaView } from "react-native";
 import RecipeCard from './RecipeCard';
 import { API, graphqlOperation } from 'aws-amplify';
 import Amplify from 'aws-amplify';
-import config from '../../aws-exports';
+import config from '../../../aws-exports';
 import listQuery from "../../utils/customQueries/listQuery";
 Amplify.configure(config);
 

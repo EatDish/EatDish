@@ -25,9 +25,20 @@ export default function Home({ navigation }) {
           My Recipes
         </Text>
       </TouchableOpacity>
-      <TouchableOpacity
+      <Text
+          style={{
+            color: colors.text,
+            fontSize: 18,
+          }}
+        >
+          Favorites
+        </Text>
+        <View style={{
+          flexDirection: 'row-reverse',
+          justifyContent: 'flex-start',
+        }}>
+        <TouchableOpacity
         style={{
-          alignItems: "center",
           padding: 15,
           backgroundColor: colors.card,
         }}
@@ -36,12 +47,13 @@ export default function Home({ navigation }) {
         <Text
           style={{
             color: colors.text,
-            fontSize: 18,
+            fontSize: 18
           }}
         >
-          Saved Recipes
+          see more...
         </Text>
       </TouchableOpacity>
+      </View>
     </View>
   );
 }

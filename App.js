@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, StatusBar } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
@@ -7,10 +7,8 @@ import {
   Entypo,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
-import HomeStackScreen from "./screen/home/HomeStackScreen";
-import CreateStackScreen from "./screen/create/CreateStackScreen";
-import ExploreStackScreen from "./screen/explore/ExploreStackScreen";
-import themeSwitcher from "./theme.js";
+import { HomeStackScreen, CreateStackScreen, ExploreStackScreen } from "./src/navigation/index.js";
+import themeSwitcher from "./src/theme.js";
 
 const Tab = createBottomTabNavigator();
 
@@ -19,6 +17,9 @@ export default function App() {
 
   return (
     <NavigationContainer style={styles.container} theme={theme}>
+      <StatusBar
+        color='white'
+      />
       <Tab.Navigator>
         <Tab.Screen
           name="Home"
