@@ -7,11 +7,11 @@ import { createIngredient, createRecipe } from '../../graphql/mutations';
 
 const initialState = {
   userName: "Danny",
-  dishName: "",
-  cuisine: "",
-  prepTime: "",
-  cookTime: "",
-  directions: "",
+  dishName: "test",
+  cuisine: "testdev",
+  prepTime: "100",
+  cookTime: "50",
+  instructions: [],
   ingredients: [],
 };
 
@@ -80,7 +80,6 @@ export default function CreateScreen() {
         cuisine: recipe.cuisine,
         prepTime: parseInt(recipe.prepTime, 10),
         cookTime: parseInt(recipe.cookTime, 10),
-        directions: recipe.directions,
           }
         })
       );
@@ -158,20 +157,20 @@ export default function CreateScreen() {
         onBlur={() => setFocus({ ...focus, ["cookTime"]: !focus["cookTime"] })}
       />
       <TextInput
-        onChangeText={(val) => setInput("directions", val)}
+        onChangeText={(val) => setInput("instructions", val)}
         style={{
           ...styles.input,
-          backgroundColor: focus["directions"] ? "dimgray" : colors.card,
+          backgroundColor: focus["instructions"] ? "dimgray" : colors.card,
           color: colors.text,
         }}
         placeholderTextColor={colors.text}
-        value={formState.directions}
-        placeholder="Directions"
+        value={formState.instructions}
+        placeholder="Instructions"
         onFocus={() =>
-          setFocus({ ...focus, ["directions"]: !focus["directions"] })
+          setFocus({ ...focus, ["instructions"]: !focus["instructions"] })
         }
         onBlur={() =>
-          setFocus({ ...focus, ["directions"]: !focus["directions"] })
+          setFocus({ ...focus, ["instructions"]: !focus["instructions"] })
         }
       />
       {ingredients.map((ingredient, i) => {

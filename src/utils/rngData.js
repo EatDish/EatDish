@@ -10,7 +10,7 @@ export function rng() {
     cuisine: faker.lorem.word(),
     prepTime: Math.floor(Math.random() * 10) + 1,
     cookTime: Math.floor(Math.random() * 60) + 1,
-    directions: "Stir and bake for 10 min",
+    instructions: "Stir and bake for 10 min",
   };
   
 return recipe;

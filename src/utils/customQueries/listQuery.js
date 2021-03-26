@@ -4,12 +4,19 @@ const listQuery = `query RecipeIngredientListName {
       cookTime
       createdAt
       cuisine
-      directions
+      instructions {
+        items {
+          stepNumber
+          stepInstruction
+        }
+      }
       dishName
       id
       ingredients {
         items {
           name
+          measurement
+          amount
         }
       }
     }

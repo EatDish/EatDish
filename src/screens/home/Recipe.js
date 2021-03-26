@@ -18,6 +18,25 @@ export default function Recipe({ route, navigation }) {
   const { recipe } = route.params;
 
   const recipeList = recipe.ingredients.items;
+  const instructionList = recipe.instructions.items;
+  const mappedInstructions = instructionList.map((instruction, index) => (
+    <CheckBox
+      containerStyle={{ backgroundColor: "transparent" }}
+      key={index}
+      title={instruction.name}
+      style={{
+        ...styles.instructions,
+        backgroundColor: colors.card,
+      }}
+      textStyle={{
+        color: colors.text,
+      }}
+      checked={checked[index]}
+      onPress={() => {
+        setChecked({ ...checked, [index]: !checked[index] });
+      }}
+    />
+  ));
   const mappedIngredients = recipeList.map((ingredient, index) => (
     <CheckBox
       containerStyle={{ backgroundColor: "transparent" }}
@@ -107,8 +126,8 @@ export default function Recipe({ route, navigation }) {
             </View>
           </TouchableOpacity>
           {showInstructions && (
-            <Text style={{ ...styles.directions, color: colors.text }}>
-              {recipe.directions}
+            <Text style={{ ...styles.instructions, color: colors.text }}>
+              {mappedInstructions}
             </Text>
           )}
         </View>
