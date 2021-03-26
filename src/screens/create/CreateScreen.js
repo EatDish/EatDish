@@ -18,7 +18,7 @@ const initialState = {
 export default function CreateScreen() {
   const { colors } = useTheme();
   const [formState, setFormState] = useState(initialState);
-  const [ingredients, setIngredients] = useState([{ value: '' }]);
+  const [ingredients, setIngredients] = useState([{ name: '', amount: 1 }]);
   const [focus, setFocus] = useState(false);
 
   function setInput(key, value) {
@@ -27,17 +27,20 @@ export default function CreateScreen() {
 
   function ingredientChange(text) {
     const values = [... ingredients];
-    values[values.length - 1].value = text;
+    values[values.length - 1].name = text;
     setIngredients(values);
   }
 
   function ingredientAdd() {
-    if (ingredients[ingredients.length - 1].value === '') {
+    if (ingredients[ingredients.length - 1].name === '') {
       return;
     }
     const values = [...ingredients];
     setInput('ingredients', [...values]);
-    values.push({ value: '' })
+    values.push({ 
+      name: '',
+      amount: 1,
+    })
     setIngredients(values);
   }
 
@@ -56,9 +59,9 @@ export default function CreateScreen() {
   const ingredientMutation = (ingredient, recipeConnectionID) => {
     API.graphql(graphqlOperation(createIngredient, {
       input: {
-        name: ingredient.value,
-        measurement: 'test',
-        amount: 100,
+        name: ingredient.name,
+        measurement: 'TODO measurement value',
+        amount: ingredient.amount,
         ingredientRecipeId: recipeConnectionID,
       }
     }));
@@ -185,7 +188,7 @@ export default function CreateScreen() {
                 fontSize: 18,
               }}
             >
-              {ingredient?.value || ''}
+              {ingredient?.name|| ''}
             </Text>
             <Button title="Delete an Ingredient" onPress={() => ingredientDelete(i)} />
           </View>
@@ -195,7 +198,7 @@ export default function CreateScreen() {
               onChangeText={(text) => {
                 return ingredientChange(text);
               }}
-              value={ingredients[ingredients.length - 1].value || ''}
+              value={ingredients[ingredients.length - 1].name|| ''}
               placeholderTextColor={colors.text}
               placeholder="Ingredient"
               style={{

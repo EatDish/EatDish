@@ -66,7 +66,7 @@ export default function Recipe({ route, navigation }) {
         <View style={styles.infoContainer}>
           <View style={styles.infoRow}>
             <Text style={{ ...styles.dishName, color: colors.text }}>
-              {recipe.dishName}
+              {recipe.dishName+' '}
             </Text>
             <Text style={{ ...styles.cuisine, color: colors.text }}>
               {recipe.cuisine}
@@ -75,7 +75,7 @@ export default function Recipe({ route, navigation }) {
           <View style={styles.infoRow}>
             <Text
               style={{ ...styles.details, color: colors.text }}
-            >{`Prep time: ${recipe.prepTime} mins`}</Text>
+            >{`Prep time: ${recipe.prepTime} mins `}</Text>
             <Text
               style={{ ...styles.details, color: colors.text }}
             >{`Cook time: ${recipe.cookTime} mins`}</Text>
@@ -83,7 +83,7 @@ export default function Recipe({ route, navigation }) {
           <View style={styles.infoRow}>
             <Text
               style={{ ...styles.details, color: colors.text }}
-            >{`Stars: ${recipe.stars}`}</Text>
+            >{`Stars: ${recipe.stars} `}</Text>
             <Text
               style={{ ...styles.details, color: colors.text }}
             >{`Forks: ${recipe.forks}`}</Text>
