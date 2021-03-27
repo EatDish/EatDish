@@ -7,7 +7,12 @@ import {
   Entypo,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
-import { HomeStackScreen, CreateStackScreen, ExploreStackScreen } from "./src/navigation/index.js";
+import {
+  HomeStackScreen,
+  CreateStackScreen,
+  ExploreStackScreen,
+  AccountStackScreen,
+} from "./src/navigation/index.js";
 import themeSwitcher from "./src/theme.js";
 
 const Tab = createBottomTabNavigator();
@@ -17,9 +22,7 @@ export default function App() {
 
   return (
     <NavigationContainer style={styles.container} theme={theme}>
-      <StatusBar
-        color='white'
-      />
+      <StatusBar color="white" />
       <Tab.Navigator>
         <Tab.Screen
           name="Home"
@@ -54,6 +57,19 @@ export default function App() {
             tabBarIcon: (e) => (
               <MaterialCommunityIcons
                 name="chef-hat"
+                size={30}
+                color={e.focused ? theme.colors.primary : theme.colors.text}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Account"
+          component={AccountStackScreen}
+          options={{
+            tabBarIcon: (e) => (
+              <MaterialCommunityIcons
+                name="account"
                 size={30}
                 color={e.focused ? theme.colors.primary : theme.colors.text}
               />
