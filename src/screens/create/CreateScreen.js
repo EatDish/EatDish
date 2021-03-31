@@ -61,7 +61,7 @@ export default function CreateScreen() {
       input: {
         name: ingredient.name,
         measurement: 'TODO measurement value',
-        amount: ingredient.amount,
+        amount: ingredient?.amount || 1,
         ingredientRecipeId: recipeConnectionID,
       }
     }));

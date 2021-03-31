@@ -5,21 +5,21 @@ type Recipe @model {
 	cuisine: String
 	prepTime: Int
 	cookTime: Int
-	directions: String
+	instructions: [Instruction] @connection(name: "RecipeInstructions")
 	ingredients: [Ingredient] @connection(name: "RecipeIngredients")
 }
 
-type Ingredient @model {
+type Ingredient @model{
 	id: ID!
 	name: String!
+	measurement: String
+	amount: Int!
 	recipe: Recipe @connection(name: "RecipeIngredients")
 }
 
-type IngredientConnection {
-	items: [Ingredient]
-	nextToken: String
-}
-
-type Query {
-	ingredientsForRecipe(recipeId: ID!, limit: Int, nextToken: String): IngredientConnection
+type Instruction @model {
+	id: ID!
+	stepNumber: Int!
+	stepInstruction: String!
+	recipe: Recipe @connection(name: "RecipeInstructions")
 }
