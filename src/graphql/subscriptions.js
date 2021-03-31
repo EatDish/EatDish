@@ -10,16 +10,26 @@ export const onCreateRecipe = /* GraphQL */ `
       cuisine
       prepTime
       cookTime
-      stars
-      forks
-      directions
+      instructions {
+        items {
+          id
+          stepNumber
+          stepInstruction
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       ingredients {
-        id
-        name
-        measurement
-        amount
-        createdAt
-        updatedAt
+        items {
+          id
+          name
+          measurement
+          amount
+          createdAt
+          updatedAt
+        }
+        nextToken
       }
       createdAt
       updatedAt
@@ -35,16 +45,26 @@ export const onUpdateRecipe = /* GraphQL */ `
       cuisine
       prepTime
       cookTime
-      stars
-      forks
-      directions
+      instructions {
+        items {
+          id
+          stepNumber
+          stepInstruction
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       ingredients {
-        id
-        name
-        measurement
-        amount
-        createdAt
-        updatedAt
+        items {
+          id
+          name
+          measurement
+          amount
+          createdAt
+          updatedAt
+        }
+        nextToken
       }
       createdAt
       updatedAt
@@ -60,16 +80,26 @@ export const onDeleteRecipe = /* GraphQL */ `
       cuisine
       prepTime
       cookTime
-      stars
-      forks
-      directions
+      instructions {
+        items {
+          id
+          stepNumber
+          stepInstruction
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       ingredients {
-        id
-        name
-        measurement
-        amount
-        createdAt
-        updatedAt
+        items {
+          id
+          name
+          measurement
+          amount
+          createdAt
+          updatedAt
+        }
+        nextToken
       }
       createdAt
       updatedAt
@@ -83,6 +113,22 @@ export const onCreateIngredient = /* GraphQL */ `
       name
       measurement
       amount
+      recipe {
+        id
+        userName
+        dishName
+        cuisine
+        prepTime
+        cookTime
+        instructions {
+          nextToken
+        }
+        ingredients {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -95,6 +141,22 @@ export const onUpdateIngredient = /* GraphQL */ `
       name
       measurement
       amount
+      recipe {
+        id
+        userName
+        dishName
+        cuisine
+        prepTime
+        cookTime
+        instructions {
+          nextToken
+        }
+        ingredients {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -107,6 +169,103 @@ export const onDeleteIngredient = /* GraphQL */ `
       name
       measurement
       amount
+      recipe {
+        id
+        userName
+        dishName
+        cuisine
+        prepTime
+        cookTime
+        instructions {
+          nextToken
+        }
+        ingredients {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateInstruction = /* GraphQL */ `
+  subscription OnCreateInstruction {
+    onCreateInstruction {
+      id
+      stepNumber
+      stepInstruction
+      recipe {
+        id
+        userName
+        dishName
+        cuisine
+        prepTime
+        cookTime
+        instructions {
+          nextToken
+        }
+        ingredients {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateInstruction = /* GraphQL */ `
+  subscription OnUpdateInstruction {
+    onUpdateInstruction {
+      id
+      stepNumber
+      stepInstruction
+      recipe {
+        id
+        userName
+        dishName
+        cuisine
+        prepTime
+        cookTime
+        instructions {
+          nextToken
+        }
+        ingredients {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteInstruction = /* GraphQL */ `
+  subscription OnDeleteInstruction {
+    onDeleteInstruction {
+      id
+      stepNumber
+      stepInstruction
+      recipe {
+        id
+        userName
+        dishName
+        cuisine
+        prepTime
+        cookTime
+        instructions {
+          nextToken
+        }
+        ingredients {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }

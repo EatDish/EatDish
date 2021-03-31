@@ -57,7 +57,9 @@ export default function CreateScreen() {
     API.graphql(graphqlOperation(createIngredient, {
       input: {
         name: ingredient.value,
-        ingredientRecipeId: recipeConnectionID
+        measurement: 'test',
+        amount: 100,
+        ingredientRecipeId: recipeConnectionID,
       }
     }));
   }
