@@ -1,11 +1,6 @@
 projects:
-<<<<<<< HEAD
   eatdish:
     schemaPath: amplify/backend/api/eatdish/build/schema.graphql
-=======
-  eatdev:
-    schemaPath: amplify/backend/api/eatdev/build/schema.graphql
->>>>>>> 1106c93 (new instruction table, new ingredient columns amount and measurements)
     includes:
       - src/graphql/**/*.js
     excludes:
