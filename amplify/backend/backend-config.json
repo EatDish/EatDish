@@ -1,6 +1,6 @@
 {
   "api": {
-    "eatdev": {
+    "eatdish": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
       "output": {

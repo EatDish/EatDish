@@ -1,15 +1,15 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-eatdev-dev-230845-authRole",
-      "UnauthRoleArn": "arn:aws:iam::723457465676:role/amplify-eatdev-dev-230845-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::723457465676:role/amplify-eatdev-dev-230845-authRole",
+      "AuthRoleName": "amplify-eatdish-dev-225111-authRole",
+      "UnauthRoleArn": "arn:aws:iam::723457465676:role/amplify-eatdish-dev-225111-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::723457465676:role/amplify-eatdish-dev-225111-authRole",
       "Region": "us-west-2",
-      "DeploymentBucketName": "amplify-eatdev-dev-230845-deployment",
-      "UnauthRoleName": "amplify-eatdev-dev-230845-unauthRole",
-      "StackName": "amplify-eatdev-dev-230845",
-      "StackId": "arn:aws:cloudformation:us-west-2:723457465676:stack/amplify-eatdev-dev-230845/1f384620-8494-11eb-b28e-0a9646741037",
-      "AmplifyAppId": "dmqfzh0wnbfup"
+      "DeploymentBucketName": "amplify-eatdish-dev-225111-deployment",
+      "UnauthRoleName": "amplify-eatdish-dev-225111-unauthRole",
+      "StackName": "amplify-eatdish-dev-225111",
+      "StackId": "arn:aws:cloudformation:us-west-2:723457465676:stack/amplify-eatdish-dev-225111/2c6a3a90-7d7f-11eb-9370-06adbf368a99",
+      "AmplifyAppId": "dtdpw0lp71w34"
     }
   }
 }
