@@ -10,7 +10,7 @@ npm-debug.*
 web-build/
 
 package-lock.json
-
+amplify
 
 # macOS
 .DS_Store

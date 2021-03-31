@@ -24,7 +24,6 @@ export default function ExploreScreen({ navigation }) {
   const [focus, setFocus] = useState(false);
 
   const filterList = (list) => {
-    console.log('ExploreScreen.js -- list:', list);
     
     return list.filter(
       (listItem) =>

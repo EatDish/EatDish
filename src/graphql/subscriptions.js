@@ -10,11 +10,22 @@ export const onCreateRecipe = /* GraphQL */ `
       cuisine
       prepTime
       cookTime
-      directions
+      instructions {
+        items {
+          id
+          stepNumber
+          stepInstruction
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       ingredients {
         items {
           id
           name
+          measurement
+          amount
           createdAt
           updatedAt
         }
@@ -34,11 +45,22 @@ export const onUpdateRecipe = /* GraphQL */ `
       cuisine
       prepTime
       cookTime
-      directions
+      instructions {
+        items {
+          id
+          stepNumber
+          stepInstruction
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       ingredients {
         items {
           id
           name
+          measurement
+          amount
           createdAt
           updatedAt
         }
@@ -58,11 +80,22 @@ export const onDeleteRecipe = /* GraphQL */ `
       cuisine
       prepTime
       cookTime
-      directions
+      instructions {
+        items {
+          id
+          stepNumber
+          stepInstruction
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       ingredients {
         items {
           id
           name
+          measurement
+          amount
           createdAt
           updatedAt
         }
@@ -78,6 +111,8 @@ export const onCreateIngredient = /* GraphQL */ `
     onCreateIngredient {
       id
       name
+      measurement
+      amount
       recipe {
         id
         userName
@@ -85,7 +120,9 @@ export const onCreateIngredient = /* GraphQL */ `
         cuisine
         prepTime
         cookTime
-        directions
+        instructions {
+          nextToken
+        }
         ingredients {
           nextToken
         }
@@ -102,6 +139,8 @@ export const onUpdateIngredient = /* GraphQL */ `
     onUpdateIngredient {
       id
       name
+      measurement
+      amount
       recipe {
         id
         userName
@@ -109,7 +148,9 @@ export const onUpdateIngredient = /* GraphQL */ `
         cuisine
         prepTime
         cookTime
-        directions
+        instructions {
+          nextToken
+        }
         ingredients {
           nextToken
         }
@@ -126,6 +167,8 @@ export const onDeleteIngredient = /* GraphQL */ `
     onDeleteIngredient {
       id
       name
+      measurement
+      amount
       recipe {
         id
         userName
@@ -133,7 +176,90 @@ export const onDeleteIngredient = /* GraphQL */ `
         cuisine
         prepTime
         cookTime
-        directions
+        instructions {
+          nextToken
+        }
+        ingredients {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateInstruction = /* GraphQL */ `
+  subscription OnCreateInstruction {
+    onCreateInstruction {
+      id
+      stepNumber
+      stepInstruction
+      recipe {
+        id
+        userName
+        dishName
+        cuisine
+        prepTime
+        cookTime
+        instructions {
+          nextToken
+        }
+        ingredients {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateInstruction = /* GraphQL */ `
+  subscription OnUpdateInstruction {
+    onUpdateInstruction {
+      id
+      stepNumber
+      stepInstruction
+      recipe {
+        id
+        userName
+        dishName
+        cuisine
+        prepTime
+        cookTime
+        instructions {
+          nextToken
+        }
+        ingredients {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteInstruction = /* GraphQL */ `
+  subscription OnDeleteInstruction {
+    onDeleteInstruction {
+      id
+      stepNumber
+      stepInstruction
+      recipe {
+        id
+        userName
+        dishName
+        cuisine
+        prepTime
+        cookTime
+        instructions {
+          nextToken
+        }
         ingredients {
           nextToken
         }

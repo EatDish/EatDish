@@ -13,11 +13,22 @@ export const createRecipe = /* GraphQL */ `
       cuisine
       prepTime
       cookTime
-      directions
+      instructions {
+        items {
+          id
+          stepNumber
+          stepInstruction
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       ingredients {
         items {
           id
           name
+          measurement
+          amount
           createdAt
           updatedAt
         }
@@ -40,11 +51,22 @@ export const updateRecipe = /* GraphQL */ `
       cuisine
       prepTime
       cookTime
-      directions
+      instructions {
+        items {
+          id
+          stepNumber
+          stepInstruction
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       ingredients {
         items {
           id
           name
+          measurement
+          amount
           createdAt
           updatedAt
         }
@@ -67,11 +89,22 @@ export const deleteRecipe = /* GraphQL */ `
       cuisine
       prepTime
       cookTime
-      directions
+      instructions {
+        items {
+          id
+          stepNumber
+          stepInstruction
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       ingredients {
         items {
           id
           name
+          measurement
+          amount
           createdAt
           updatedAt
         }
@@ -90,6 +123,8 @@ export const createIngredient = /* GraphQL */ `
     createIngredient(input: $input, condition: $condition) {
       id
       name
+      measurement
+      amount
       recipe {
         id
         userName
@@ -97,7 +132,9 @@ export const createIngredient = /* GraphQL */ `
         cuisine
         prepTime
         cookTime
-        directions
+        instructions {
+          nextToken
+        }
         ingredients {
           nextToken
         }
@@ -117,6 +154,8 @@ export const updateIngredient = /* GraphQL */ `
     updateIngredient(input: $input, condition: $condition) {
       id
       name
+      measurement
+      amount
       recipe {
         id
         userName
@@ -124,7 +163,9 @@ export const updateIngredient = /* GraphQL */ `
         cuisine
         prepTime
         cookTime
-        directions
+        instructions {
+          nextToken
+        }
         ingredients {
           nextToken
         }
@@ -144,6 +185,8 @@ export const deleteIngredient = /* GraphQL */ `
     deleteIngredient(input: $input, condition: $condition) {
       id
       name
+      measurement
+      amount
       recipe {
         id
         userName
@@ -151,7 +194,99 @@ export const deleteIngredient = /* GraphQL */ `
         cuisine
         prepTime
         cookTime
-        directions
+        instructions {
+          nextToken
+        }
+        ingredients {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createInstruction = /* GraphQL */ `
+  mutation CreateInstruction(
+    $input: CreateInstructionInput!
+    $condition: ModelInstructionConditionInput
+  ) {
+    createInstruction(input: $input, condition: $condition) {
+      id
+      stepNumber
+      stepInstruction
+      recipe {
+        id
+        userName
+        dishName
+        cuisine
+        prepTime
+        cookTime
+        instructions {
+          nextToken
+        }
+        ingredients {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateInstruction = /* GraphQL */ `
+  mutation UpdateInstruction(
+    $input: UpdateInstructionInput!
+    $condition: ModelInstructionConditionInput
+  ) {
+    updateInstruction(input: $input, condition: $condition) {
+      id
+      stepNumber
+      stepInstruction
+      recipe {
+        id
+        userName
+        dishName
+        cuisine
+        prepTime
+        cookTime
+        instructions {
+          nextToken
+        }
+        ingredients {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteInstruction = /* GraphQL */ `
+  mutation DeleteInstruction(
+    $input: DeleteInstructionInput!
+    $condition: ModelInstructionConditionInput
+  ) {
+    deleteInstruction(input: $input, condition: $condition) {
+      id
+      stepNumber
+      stepInstruction
+      recipe {
+        id
+        userName
+        dishName
+        cuisine
+        prepTime
+        cookTime
+        instructions {
+          nextToken
+        }
         ingredients {
           nextToken
         }

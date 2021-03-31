@@ -1,34 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const ingredientsForRecipe = /* GraphQL */ `
-  query IngredientsForRecipe($recipeId: ID!, $limit: Int, $nextToken: String) {
-    ingredientsForRecipe(
-      recipeId: $recipeId
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        name
-        recipe {
-          id
-          userName
-          dishName
-          cuisine
-          prepTime
-          cookTime
-          directions
-          createdAt
-          updatedAt
-        }
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
 export const getRecipe = /* GraphQL */ `
   query GetRecipe($id: ID!) {
     getRecipe(id: $id) {
@@ -38,11 +10,22 @@ export const getRecipe = /* GraphQL */ `
       cuisine
       prepTime
       cookTime
-      directions
+      instructions {
+        items {
+          id
+          stepNumber
+          stepInstruction
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       ingredients {
         items {
           id
           name
+          measurement
+          amount
           createdAt
           updatedAt
         }
@@ -67,10 +50,18 @@ export const listRecipes = /* GraphQL */ `
         cuisine
         prepTime
         cookTime
+<<<<<<< HEAD
+        stars
+        forks
         directions
+=======
+        instructions {
+          nextToken
+        }
         ingredients {
           nextToken
         }
+>>>>>>> cf2e9c5 (new schema with instructions/ingredient additions)
         createdAt
         updatedAt
       }
@@ -83,6 +74,8 @@ export const getIngredient = /* GraphQL */ `
     getIngredient(id: $id) {
       id
       name
+      measurement
+      amount
       recipe {
         id
         userName
@@ -90,7 +83,9 @@ export const getIngredient = /* GraphQL */ `
         cuisine
         prepTime
         cookTime
-        directions
+        instructions {
+          nextToken
+        }
         ingredients {
           nextToken
         }
@@ -112,6 +107,8 @@ export const listIngredients = /* GraphQL */ `
       items {
         id
         name
+        measurement
+        amount
         recipe {
           id
           userName
@@ -119,7 +116,61 @@ export const listIngredients = /* GraphQL */ `
           cuisine
           prepTime
           cookTime
-          directions
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getInstruction = /* GraphQL */ `
+  query GetInstruction($id: ID!) {
+    getInstruction(id: $id) {
+      id
+      stepNumber
+      stepInstruction
+      recipe {
+        id
+        userName
+        dishName
+        cuisine
+        prepTime
+        cookTime
+        instructions {
+          nextToken
+        }
+        ingredients {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listInstructions = /* GraphQL */ `
+  query ListInstructions(
+    $filter: ModelInstructionFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listInstructions(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        stepNumber
+        stepInstruction
+        recipe {
+          id
+          userName
+          dishName
+          cuisine
+          prepTime
+          cookTime
           createdAt
           updatedAt
         }

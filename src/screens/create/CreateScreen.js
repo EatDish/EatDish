@@ -7,18 +7,18 @@ import { createIngredient, createRecipe } from '../../graphql/mutations';
 
 const initialState = {
   userName: "Danny",
-  dishName: "",
-  cuisine: "",
-  prepTime: "",
-  cookTime: "",
-  directions: "",
+  dishName: "test",
+  cuisine: "testdev",
+  prepTime: "100",
+  cookTime: "50",
+  instructions: [],
   ingredients: [],
 };
 
 export default function CreateScreen() {
   const { colors } = useTheme();
   const [formState, setFormState] = useState(initialState);
-  const [ingredients, setIngredients] = useState([{ value: '' }]);
+  const [ingredients, setIngredients] = useState([{ name: '', amount: 1 }]);
   const [focus, setFocus] = useState(false);
 
   function setInput(key, value) {
@@ -27,17 +27,20 @@ export default function CreateScreen() {
 
   function ingredientChange(text) {
     const values = [... ingredients];
-    values[values.length - 1].value = text;
+    values[values.length - 1].name = text;
     setIngredients(values);
   }
 
   function ingredientAdd() {
-    if (ingredients[ingredients.length - 1].value === '') {
+    if (ingredients[ingredients.length - 1].name === '') {
       return;
     }
     const values = [...ingredients];
     setInput('ingredients', [...values]);
-    values.push({ value: '' })
+    values.push({ 
+      name: '',
+      amount: 1,
+    })
     setIngredients(values);
   }
 
@@ -56,8 +59,10 @@ export default function CreateScreen() {
   const ingredientMutation = (ingredient, recipeConnectionID) => {
     API.graphql(graphqlOperation(createIngredient, {
       input: {
-        name: ingredient.value,
-        ingredientRecipeId: recipeConnectionID
+        name: ingredient.name,
+        measurement: 'TODO measurement value',
+        amount: ingredient.amount,
+        ingredientRecipeId: recipeConnectionID,
       }
     }));
   }
@@ -78,7 +83,6 @@ export default function CreateScreen() {
         cuisine: recipe.cuisine,
         prepTime: parseInt(recipe.prepTime, 10),
         cookTime: parseInt(recipe.cookTime, 10),
-        directions: recipe.directions,
           }
         })
       );
@@ -156,20 +160,20 @@ export default function CreateScreen() {
         onBlur={() => setFocus({ ...focus, ["cookTime"]: !focus["cookTime"] })}
       />
       <TextInput
-        onChangeText={(val) => setInput("directions", val)}
+        onChangeText={(val) => setInput("instructions", val)}
         style={{
           ...styles.input,
-          backgroundColor: focus["directions"] ? "dimgray" : colors.card,
+          backgroundColor: focus["instructions"] ? "dimgray" : colors.card,
           color: colors.text,
         }}
         placeholderTextColor={colors.text}
-        value={formState.directions}
-        placeholder="Directions"
+        value={formState.instructions}
+        placeholder="Instructions"
         onFocus={() =>
-          setFocus({ ...focus, ["directions"]: !focus["directions"] })
+          setFocus({ ...focus, ["instructions"]: !focus["instructions"] })
         }
         onBlur={() =>
-          setFocus({ ...focus, ["directions"]: !focus["directions"] })
+          setFocus({ ...focus, ["instructions"]: !focus["instructions"] })
         }
       />
       {ingredients.map((ingredient, i) => {
@@ -184,7 +188,7 @@ export default function CreateScreen() {
                 fontSize: 18,
               }}
             >
-              {ingredient?.value || ''}
+              {ingredient?.name|| ''}
             </Text>
             <Button title="Delete an Ingredient" onPress={() => ingredientDelete(i)} />
           </View>
@@ -194,7 +198,7 @@ export default function CreateScreen() {
               onChangeText={(text) => {
                 return ingredientChange(text);
               }}
-              value={ingredients[ingredients.length - 1].value || ''}
+              value={ingredients[ingredients.length - 1].name|| ''}
               placeholderTextColor={colors.text}
               placeholder="Ingredient"
               style={{
