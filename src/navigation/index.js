@@ -4,8 +4,8 @@ import HomeStackScreen from "./HomeStackScreen";
 import AccountStackScreen from "./AccountStackScreen";
 
 export {
-  CreateStackScreen,
-  ExploreStackScreen,
-  HomeStackScreen,
-  AccountStackScreen,
+	CreateStackScreen,
+	ExploreStackScreen,
+	HomeStackScreen,
+	AccountStackScreen,
 };
