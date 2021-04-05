@@ -11,7 +11,7 @@ web-build/
 
 package-lock.json
 amplify
-
+.env.development
 # macOS
 .DS_Store
 

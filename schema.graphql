@@ -1,6 +1,6 @@
 type Recipe @model {
 	id: ID!
-	userName: String!
+	username: String!
 	dishName: String!
 	cuisine: String
 	prepTime: Int
@@ -9,7 +9,7 @@ type Recipe @model {
 	ingredients: [Ingredient] @connection(name: "RecipeIngredients")
 }
 
-type Ingredient @model{
+type Ingredient @model {
 	id: ID!
 	name: String!
 	measurement: String
@@ -22,4 +22,11 @@ type Instruction @model {
 	stepNumber: Int!
 	stepInstruction: String!
 	recipe: Recipe @connection(name: "RecipeInstructions")
+}
+
+type User @model {
+	id: ID!
+	username: String!
+	password: String!
+	recipes: [Recipe] @connection(name: "UserRecipes")
 }
