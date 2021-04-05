@@ -7,10 +7,10 @@ import { createIngredient, createRecipe } from "../../graphql/mutations";
 
 const initialState = {
 	userName: "Danny",
-	dishName: "test",
-	cuisine: "testdev",
-	prepTime: "100",
-	cookTime: "50",
+	dishName: "",
+	cuisine: "",
+	prepTime: "",
+	cookTime: "",
 	instructions: [],
 	ingredients: [],
 };

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FlatList, SafeAreaView } from "react-native";
 import RecipeCard from "./RecipeCard";
 import { API, graphqlOperation } from "aws-amplify";
-import listQuery from "../../utils/customQueries/listQuery";
+import listQuery from "../../API/listQuery";
 import Amplify from "aws-amplify";
 import config from "../../../aws-exports";
 Amplify.configure(config);

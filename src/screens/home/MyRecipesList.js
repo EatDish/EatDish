@@ -4,7 +4,7 @@ import RecipeCard from "./RecipeCard";
 import { API, graphqlOperation } from "aws-amplify";
 import Amplify from "aws-amplify";
 import config from "../../../aws-exports";
-import listQuery from "../../utils/customQueries/listQuery";
+import listQuery from "../../API/listQuery";
 Amplify.configure(config);
 
 export default function MyRecipesList({ navigation }) {
