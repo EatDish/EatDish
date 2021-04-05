@@ -8,11 +8,21 @@ export const createRecipe = /* GraphQL */ `
   ) {
     createRecipe(input: $input, condition: $condition) {
       id
-      userName
+      username
       dishName
       cuisine
       prepTime
       cookTime
+      user {
+        id
+        username
+        password
+        recipes {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       instructions {
         items {
           id
@@ -46,11 +56,21 @@ export const updateRecipe = /* GraphQL */ `
   ) {
     updateRecipe(input: $input, condition: $condition) {
       id
-      userName
+      username
       dishName
       cuisine
       prepTime
       cookTime
+      user {
+        id
+        username
+        password
+        recipes {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       instructions {
         items {
           id
@@ -84,11 +104,21 @@ export const deleteRecipe = /* GraphQL */ `
   ) {
     deleteRecipe(input: $input, condition: $condition) {
       id
-      userName
+      username
       dishName
       cuisine
       prepTime
       cookTime
+      user {
+        id
+        username
+        password
+        recipes {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       instructions {
         items {
           id
@@ -127,11 +157,18 @@ export const createIngredient = /* GraphQL */ `
       amount
       recipe {
         id
-        userName
+        username
         dishName
         cuisine
         prepTime
         cookTime
+        user {
+          id
+          username
+          password
+          createdAt
+          updatedAt
+        }
         instructions {
           nextToken
         }
@@ -158,11 +195,18 @@ export const updateIngredient = /* GraphQL */ `
       amount
       recipe {
         id
-        userName
+        username
         dishName
         cuisine
         prepTime
         cookTime
+        user {
+          id
+          username
+          password
+          createdAt
+          updatedAt
+        }
         instructions {
           nextToken
         }
@@ -189,11 +233,18 @@ export const deleteIngredient = /* GraphQL */ `
       amount
       recipe {
         id
-        userName
+        username
         dishName
         cuisine
         prepTime
         cookTime
+        user {
+          id
+          username
+          password
+          createdAt
+          updatedAt
+        }
         instructions {
           nextToken
         }
@@ -219,11 +270,18 @@ export const createInstruction = /* GraphQL */ `
       stepInstruction
       recipe {
         id
-        userName
+        username
         dishName
         cuisine
         prepTime
         cookTime
+        user {
+          id
+          username
+          password
+          createdAt
+          updatedAt
+        }
         instructions {
           nextToken
         }
@@ -249,11 +307,18 @@ export const updateInstruction = /* GraphQL */ `
       stepInstruction
       recipe {
         id
-        userName
+        username
         dishName
         cuisine
         prepTime
         cookTime
+        user {
+          id
+          username
+          password
+          createdAt
+          updatedAt
+        }
         instructions {
           nextToken
         }
@@ -279,11 +344,18 @@ export const deleteInstruction = /* GraphQL */ `
       stepInstruction
       recipe {
         id
-        userName
+        username
         dishName
         cuisine
         prepTime
         cookTime
+        user {
+          id
+          username
+          password
+          createdAt
+          updatedAt
+        }
         instructions {
           nextToken
         }
@@ -292,6 +364,87 @@ export const deleteInstruction = /* GraphQL */ `
         }
         createdAt
         updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createUser = /* GraphQL */ `
+  mutation CreateUser(
+    $input: CreateUserInput!
+    $condition: ModelUserConditionInput
+  ) {
+    createUser(input: $input, condition: $condition) {
+      id
+      username
+      password
+      recipes {
+        items {
+          id
+          username
+          dishName
+          cuisine
+          prepTime
+          cookTime
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateUser = /* GraphQL */ `
+  mutation UpdateUser(
+    $input: UpdateUserInput!
+    $condition: ModelUserConditionInput
+  ) {
+    updateUser(input: $input, condition: $condition) {
+      id
+      username
+      password
+      recipes {
+        items {
+          id
+          username
+          dishName
+          cuisine
+          prepTime
+          cookTime
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteUser = /* GraphQL */ `
+  mutation DeleteUser(
+    $input: DeleteUserInput!
+    $condition: ModelUserConditionInput
+  ) {
+    deleteUser(input: $input, condition: $condition) {
+      id
+      username
+      password
+      recipes {
+        items {
+          id
+          username
+          dishName
+          cuisine
+          prepTime
+          cookTime
+          createdAt
+          updatedAt
+        }
+        nextToken
       }
       createdAt
       updatedAt

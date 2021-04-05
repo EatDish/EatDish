@@ -5,11 +5,21 @@ export const getRecipe = /* GraphQL */ `
   query GetRecipe($id: ID!) {
     getRecipe(id: $id) {
       id
-      userName
+      username
       dishName
       cuisine
       prepTime
       cookTime
+      user {
+        id
+        username
+        password
+        recipes {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       instructions {
         items {
           id
@@ -45,23 +55,24 @@ export const listRecipes = /* GraphQL */ `
     listRecipes(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        userName
+        username
         dishName
         cuisine
         prepTime
         cookTime
-<<<<<<< HEAD
-        stars
-        forks
-        directions
-=======
+        user {
+          id
+          username
+          password
+          createdAt
+          updatedAt
+        }
         instructions {
           nextToken
         }
         ingredients {
           nextToken
         }
->>>>>>> cf2e9c5 (new schema with instructions/ingredient additions)
         createdAt
         updatedAt
       }
@@ -78,11 +89,18 @@ export const getIngredient = /* GraphQL */ `
       amount
       recipe {
         id
-        userName
+        username
         dishName
         cuisine
         prepTime
         cookTime
+        user {
+          id
+          username
+          password
+          createdAt
+          updatedAt
+        }
         instructions {
           nextToken
         }
@@ -111,7 +129,7 @@ export const listIngredients = /* GraphQL */ `
         amount
         recipe {
           id
-          userName
+          username
           dishName
           cuisine
           prepTime
@@ -134,11 +152,18 @@ export const getInstruction = /* GraphQL */ `
       stepInstruction
       recipe {
         id
-        userName
+        username
         dishName
         cuisine
         prepTime
         cookTime
+        user {
+          id
+          username
+          password
+          createdAt
+          updatedAt
+        }
         instructions {
           nextToken
         }
@@ -166,13 +191,58 @@ export const listInstructions = /* GraphQL */ `
         stepInstruction
         recipe {
           id
-          userName
+          username
           dishName
           cuisine
           prepTime
           cookTime
           createdAt
           updatedAt
+        }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getUser = /* GraphQL */ `
+  query GetUser($id: ID!) {
+    getUser(id: $id) {
+      id
+      username
+      password
+      recipes {
+        items {
+          id
+          username
+          dishName
+          cuisine
+          prepTime
+          cookTime
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listUsers = /* GraphQL */ `
+  query ListUsers(
+    $filter: ModelUserFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        username
+        password
+        recipes {
+          nextToken
         }
         createdAt
         updatedAt

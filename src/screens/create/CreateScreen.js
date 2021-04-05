@@ -3,10 +3,10 @@ import { View, Text, Button, StyleSheet, TextInput, Alert } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import Constants from "expo-constants";
 import { graphqlOperation, API } from "aws-amplify";
-import { createIngredient, createRecipe } from "../../graphql/mutations";
+import { createIngredient, createRecipe } from "../../API/mutations";
 
 const initialState = {
-	userName: "Danny",
+	username: "Danny",
 	dishName: "",
 	cuisine: "",
 	prepTime: "",

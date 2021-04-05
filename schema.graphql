@@ -1,10 +1,11 @@
 type Recipe @model {
 	id: ID!
-	username: String!
+	username: String
 	dishName: String!
 	cuisine: String
 	prepTime: Int
 	cookTime: Int
+	user: User @connection(name: "UserRecipes")
 	instructions: [Instruction] @connection(name: "RecipeInstructions")
 	ingredients: [Ingredient] @connection(name: "RecipeIngredients")
 }
