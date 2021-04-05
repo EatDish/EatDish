@@ -1,6 +1,6 @@
 type Recipe @model {
 	id: ID!
-	username: String!
+	username: String
 	dishName: String!
 	cuisine: String
 	prepTime: Int
