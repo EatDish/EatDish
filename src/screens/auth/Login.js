@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useTheme } from "@react-navigation/native";
 import { View, Text, Button, StyleSheet, TextInput, Alert } from "react-native";
 import { graphqlOperation, API } from "aws-amplify";
-import { createUser } from "../../API/mutations";
+import useUserQuery from "../../API/useUserQuery";
 
 const initialUserState = {
 	username: "",
 	password: "",
 };
 
-export default function Register({ navigation }) {
+export default function Login({ navigation }) {
 	const { colors } = useTheme();
 	const [formState, setFormState] = useState(initialUserState);
 
@@ -17,23 +17,17 @@ export default function Register({ navigation }) {
 		setFormState({ ...formState, [key]: value });
 	}
 
-	async function registerUser() {
+	async function loginUser() {
 		if (formState.password.length === 0 || formState.username.length === 0) {
 			Alert.alert("username or pass is empty!", "", [
 				{ text: "OK", onPress: () => console.log("ok pressed") },
 			]);
 			return;
 		}
-		console.log("Register.js -- formState:", formState);
-		const result = await API.graphql(
-			graphqlOperation(createUser, {
-				input: {
-					username: formState.username,
-					password: formState.password,
-				},
-			})
-		)
-			.then(({ data }) => console.log("Register.js -- data:", data))
+		const graphQuery = useUserQuery(formState.username, formState.password);
+		console.log("Login.js -- graphQuery:", graphQuery);
+		const result = await API.graphql(graphqlOperation(graphQuery))
+			.then(({ data }) => console.log("Login.js -- data:", data))
 			.catch((err) => console.log("err:", err));
 		setFormState(initialUserState);
 	}
@@ -52,7 +46,7 @@ export default function Register({ navigation }) {
 				style={styles.input}
 				placeholder="password"
 			/>
-			<Button title="Create User" onPress={registerUser} />
+			<Button title="Login" onPress={loginUser} />
 		</View>
 	);
 }
