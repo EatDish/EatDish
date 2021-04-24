@@ -4,12 +4,16 @@ import Favorites from "../screens/home/Favorites";
 import MyRecipesList from "../screens/home/MyRecipesList";
 import Home from "../screens/home/Home";
 import Recipe from "../screens/home/Recipe";
+import Register from "../screens/auth/Register";
+import Login from "../screens/auth/Login";
 
 const HomeStack = createStackNavigator();
 
 export default function HomeStackScreen({ navigation }) {
 	return (
 		<HomeStack.Navigator>
+			<HomeStack.Screen name="Login" component={Login} />
+			<HomeStack.Screen name="Register" component={Register} />
 			<HomeStack.Screen name="Home" component={Home} />
 			<HomeStack.Screen name="MyRecipes" component={MyRecipesList} />
 			<HomeStack.Screen name="SavedRecipes" component={Favorites} />

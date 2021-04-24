@@ -52,7 +52,14 @@ export default function Register({ navigation }) {
 				style={styles.input}
 				placeholder="password"
 			/>
-			<Button title="Create User" onPress={registerUser} />
+			<Button
+				title="Create User"
+				onPress={async () =>
+					registerUser()
+						.then(navigation.navigate("Login"))
+						.catch((err) => console.log(err))
+				}
+			/>
 		</View>
 	);
 }

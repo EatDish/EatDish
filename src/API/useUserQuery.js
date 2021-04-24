@@ -9,6 +9,8 @@ export default function useUserQuery(username, pass) {
       }
     }) {
       items {
+        username
+        password
         id
       }
     }
