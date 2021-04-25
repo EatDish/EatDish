@@ -3,6 +3,7 @@ import { useRoute, useTheme } from "@react-navigation/native";
 import { View, Text, Button, StyleSheet, TextInput, Alert } from "react-native";
 import { graphqlOperation, API } from "aws-amplify";
 import useUserQuery from "../../API/useUserQuery";
+import { getUser, storeUser } from "../../utils/asyncStorage";
 
 const initialUserState = {
 	username: "",
@@ -12,14 +13,11 @@ const initialUserState = {
 export default function Login({ navigation }) {
 	const { colors } = useTheme();
 	const [formState, setFormState] = useState(initialUserState);
-	const [user, setUser] = useState();
 
 	useEffect(() => {
-		const loggedInUser = localStorage.getItem("user");
-		if (loggedInUser) {
+		const loggedInUser = getUser();
+		if (loggedInUser !== null) {
 			navigation.navigate("Home");
-			const foundUser = JSON.parse(loggedInUser);
-			setUser(foundUser);
 		}
 	}, []);
 
@@ -38,8 +36,7 @@ export default function Login({ navigation }) {
 		const result = await API.graphql(graphqlOperation(graphQuery))
 			.then(({ data }) => {
 				let responseUser = data.listUsers.items[0];
-				setUser(responseUser);
-				localStorage.setItem("user", JSON.stringify(responseUser));
+				storeUser(responseUser);
 			})
 			.catch((err) => console.log("err:", err));
 		setFormState(initialUserState);
@@ -63,8 +60,8 @@ export default function Login({ navigation }) {
 				title="Login"
 				onPress={() =>
 					loginUser().then(() => {
-						let user = localStorage.getItem("user");
-						if (user !== undefined) {
+						let user = getUser();
+						if (user !== null) {
 							navigation.navigate("Home");
 						}
 					})

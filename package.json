@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@aws-amplify/datastore": "^2.9.11",
+    "@react-native-async-storage/async-storage": "^1.15.4",
     "@react-native-community/masked-view": "0.1.10",
     "@react-native-community/netinfo": "^6.0.0",
     "@react-navigation/bottom-tabs": "^5.11.8",
