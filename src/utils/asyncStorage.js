@@ -10,7 +10,7 @@ export const storeUser = async (value) => {
 export const getUser = async () => {
 	try {
 		const jsonValue = await AsyncStorage.getItem("user");
-		return jsonValue != null ? JSON.parse(jsonValue) : null;
+		return jsonValue !== null ? JSON.parse(jsonValue) : null;
 	} catch (e) {
 		console.log("asyncStorage.js -- Get User error:", e);
 	}
