@@ -11,6 +11,7 @@ const initialState = {
 	cuisine: "",
 	prepTime: "",
 	cookTime: "",
+	recipeUserId: "",
 	instructions: [],
 	ingredients: [],
 };

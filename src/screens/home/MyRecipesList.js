@@ -5,10 +5,15 @@ import { API, graphqlOperation } from "aws-amplify";
 import Amplify from "aws-amplify";
 import config from "../../../aws-exports";
 import listQuery from "../../API/listQuery";
+import { useSelector } from "react-redux";
+import { selectId } from "../../reducers/userInfoSlice";
+import useUserRecipeList from "../../API/useUserRecipeListQuery";
+
 Amplify.configure(config);
 
 export default function MyRecipesList({ navigation }) {
 	const [recipes, setRecipes] = useState([]);
+	const userId = useSelector(selectId);
 
 	useEffect(() => {
 		fetchRecipes();
@@ -16,9 +21,10 @@ export default function MyRecipesList({ navigation }) {
 
 	async function fetchRecipes() {
 		try {
-			const recipeData = await API.graphql(graphqlOperation(listQuery));
-			const recipes = recipeData.data.listRecipes.items;
-			setRecipes(recipes);
+			const userRecipeQuery = useUserRecipeList(userId);
+			const recipeData = await API.graphql(graphqlOperation(userRecipeQuery));
+			const recipeList = recipeData.data.listRecipes.items;
+			setRecipes(recipeList);
 		} catch (err) {
 			console.log("error fetching recipes:", err);
 		}

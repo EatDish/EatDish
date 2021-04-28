@@ -4,6 +4,8 @@ import { View, Text, Button, StyleSheet, TextInput, Alert } from "react-native";
 import { graphqlOperation, API } from "aws-amplify";
 import useUserQuery from "../../API/useUserQuery";
 import { getUser, storeUser } from "../../utils/asyncStorage";
+import { useDispatch } from "react-redux";
+import { fetchUser } from "../../reducers/userInfoSlice";
 
 const initialUserState = {
 	username: "",
@@ -11,6 +13,7 @@ const initialUserState = {
 };
 
 export default function Login({ navigation }) {
+	const dispatch = useDispatch();
 	const { colors } = useTheme();
 	const [formState, setFormState] = useState(initialUserState);
 
@@ -36,6 +39,7 @@ export default function Login({ navigation }) {
 		const result = await API.graphql(graphqlOperation(graphQuery))
 			.then(({ data }) => {
 				let responseUser = data.listUsers.items[0];
+				dispatch(fetchUser(responseUser.id));
 				storeUser(responseUser);
 			})
 			.catch((err) => console.log("err:", err));
