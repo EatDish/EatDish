@@ -4,6 +4,8 @@ import { useTheme } from "@react-navigation/native";
 import Constants from "expo-constants";
 import { graphqlOperation, API } from "aws-amplify";
 import { createIngredient, createRecipe } from "../../API/mutations";
+import { useSelector } from "react-redux";
+import { selectId } from "../../reducers/userInfoSlice";
 
 const initialState = {
 	username: "Danny",
@@ -21,6 +23,7 @@ export default function CreateScreen() {
 	const [formState, setFormState] = useState(initialState);
 	const [ingredients, setIngredients] = useState([{ name: "", amount: 1 }]);
 	const [focus, setFocus] = useState(false);
+	const userId = useSelector(selectId);
 
 	function setInput(key, value) {
 		setFormState({ ...formState, [key]: value });
@@ -84,6 +87,7 @@ export default function CreateScreen() {
 						userName: recipe.userName,
 						dishName: recipe.dishName,
 						cuisine: recipe.cuisine,
+						recipeUserId: userId,
 						prepTime: parseInt(recipe.prepTime, 10),
 						cookTime: parseInt(recipe.cookTime, 10),
 					},

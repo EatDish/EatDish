@@ -4,7 +4,6 @@ import RecipeCard from "./RecipeCard";
 import { API, graphqlOperation } from "aws-amplify";
 import Amplify from "aws-amplify";
 import config from "../../../aws-exports";
-import listQuery from "../../API/listQuery";
 import { useSelector } from "react-redux";
 import { selectId } from "../../reducers/userInfoSlice";
 import useUserRecipeList from "../../API/useUserRecipeListQuery";
