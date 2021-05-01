@@ -18,15 +18,13 @@ export default function Login({ navigation }) {
 	const [formState, setFormState] = useState(initialUserState);
 
 	useEffect(() => {
-		const loggedInUser = getUser();
-		if (loggedInUser !== null) {
-			navigation.navigate("Home");
-		}
+		getUser().then((user) => {
+			if (user !== null) {
+				dispatch(fetchUser(user.id));
+				navigation.navigate("Home");
+			}
+		});
 	}, []);
-
-	function handleInput(key, value) {
-		setFormState({ ...formState, [key]: value });
-	}
 
 	async function loginUser() {
 		if (formState.password.length === 0 || formState.username.length === 0) {
@@ -44,6 +42,10 @@ export default function Login({ navigation }) {
 			})
 			.catch((err) => console.log("err:", err));
 		setFormState(initialUserState);
+	}
+
+	function handleInput(key, value) {
+		setFormState({ ...formState, [key]: value });
 	}
 
 	return (
