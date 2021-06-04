@@ -8,8 +8,9 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
-
+#
 package-lock.json
+#
 amplify
 .env.development
 # macOS
