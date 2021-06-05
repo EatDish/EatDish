@@ -2,7 +2,9 @@
 *recipe sharing application*
 - react native application spawned from a Hack Reactor hackathon
 
-## Preview
+## demo
+
+<div align="center"><a href="https://www.youtube.com/watch?v=uKTPgYmEAxo" target="_blank"><img src="./assets/EatDishYoutube.png" height="500" width="auto"></a></div>
 
 ## Installation
 with npm:
