@@ -1,14 +1,17 @@
 import React from "react";
 import BotNav from "./src/navigation/tabNav/BotNav";
-import themeSwitcher from "./src/theme";
 import store from "./src/store";
 import { Provider } from "react-redux";
+import { Provider as PaperProvider,
+} from 'react-native-paper';
+import {CombinedDarkTheme} from './src/styles/PaperNavigationMerge';
 
 export default function App() {
-	let theme = themeSwitcher("dark");
 	return (
 		<Provider store={store}>
-			<BotNav theme={theme} />
+			<PaperProvider theme={CombinedDarkTheme}>
+				<BotNav theme={CombinedDarkTheme} />
+			</PaperProvider>
 		</Provider>
 	);
 }
