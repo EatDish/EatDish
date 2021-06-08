@@ -7,11 +7,12 @@ export const useThemeContext = () => {
 
   let theme = isThemeDark ? CombinedDarkTheme : CombinedDefaultTheme;
 
-  const toggleTheme = () => {
-    return setIsThemeDark(!isThemeDark);
-  };
+  const toggleTheme = React.useCallback(() => setIsThemeDark(isThemeDark => !isThemeDark)
+  ,[isThemeDark]);
 
-  const preferences = {toggleTheme, isThemeDark}
+  const preferences = React.useMemo(() => ({toggleTheme, isThemeDark}),
+    [toggleTheme, isThemeDark]
+  );
  
   return [theme, preferences];
 };

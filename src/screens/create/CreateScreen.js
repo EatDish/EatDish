@@ -168,14 +168,14 @@ export default function CreateScreen() {
 				onBlur={() => setFocus({ ...focus, ["cookTime"]: !focus["cookTime"] })}
 			/>
 			<TextInput
-				onChangeText={(val) => setInput("instructions", val)}
+				onChangeText={(val) => setInput("instructions", [val])}
 				style={{
 					...styles.input,
 					backgroundColor: focus["instructions"] ? "dimgray" : colors.card,
 					color: colors.text,
 				}}
 				placeholderTextColor={colors.text}
-				value={formState.instructions}
+				value={formState.instructions[0]}
 				placeholder="Instructions"
 				onFocus={() =>
 					setFocus({ ...focus, ["instructions"]: !focus["instructions"] })
