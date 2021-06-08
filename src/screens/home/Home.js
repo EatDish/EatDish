@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { useTheme } from "@react-navigation/native";
+import Header from '../../components/Header';
 
 export default function Home({ navigation }) {
 	const { colors } = useTheme();
