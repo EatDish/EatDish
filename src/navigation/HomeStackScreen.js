@@ -6,12 +6,13 @@ import Home from "../screens/home/Home";
 import Recipe from "../screens/home/Recipe";
 import Register from "../screens/auth/Register";
 import Login from "../screens/auth/Login";
+import Header from '../components/Header';
 
 const HomeStack = createStackNavigator();
 
 export default function HomeStackScreen({ navigation }) {
 	return (
-		<HomeStack.Navigator>
+		<HomeStack.Navigator  screenOptions={{header: Header}}>
 			<HomeStack.Screen name="Login" component={Login} />
 			<HomeStack.Screen name="Register" component={Register} />
 			<HomeStack.Screen name="Home" component={Home} />

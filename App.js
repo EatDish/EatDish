@@ -1,14 +1,21 @@
 import React from "react";
 import BotNav from "./src/navigation/tabNav/BotNav";
-import themeSwitcher from "./src/theme";
 import store from "./src/store";
 import { Provider } from "react-redux";
-
+import { Provider as PaperProvider,
+} from 'react-native-paper';
+import {useThemeContext} from './src/styles/useThemeContext';
+import { PreferencesContext } from './src/styles/LightDarkThemeContext';
 export default function App() {
-	let theme = themeSwitcher("dark");
+	const [theme, preferences] = useThemeContext();
+
 	return (
 		<Provider store={store}>
-			<BotNav theme={theme} />
+			<PreferencesContext.Provider value={preferences}>
+				<PaperProvider theme={theme}>
+					<BotNav theme={theme} />
+				</PaperProvider>
+			</PreferencesContext.Provider>
 		</Provider>
 	);
 }
