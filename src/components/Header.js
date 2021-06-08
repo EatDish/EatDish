@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useTheme, Appbar, TouchableRipple, Switch } from 'react-native-paper';
-import { PreferenesContext } from '../styles/LightDarkThemeContext';
+import { PreferencesContext } from '../styles/LightDarkThemeContext';
 
 const Header = ({ scene, navigation, previous }) => {
   const theme = useTheme();
   const { toggleTheme, isThemeDark } = React.useContext(PreferencesContext);
+  const renders = React.useRef(0);
+  console.log('Header.js -- renders.current:', renders.current++);
+
 
   return (
     <Appbar.Header
@@ -19,7 +22,7 @@ const Header = ({ scene, navigation, previous }) => {
       <TouchableRipple onPress={() => toggleTheme()}>
         <Switch
           style={[{ backgroundColor: theme.colors.accent }]}
-          color={'red'}
+          color={'yellow'}
           value={isThemeDark}
         />
       </TouchableRipple>

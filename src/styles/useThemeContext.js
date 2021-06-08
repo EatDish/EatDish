@@ -10,6 +10,8 @@ export const useThemeContext = () => {
   const toggleTheme = () => {
     return setIsThemeDark(!isThemeDark);
   };
+
+  const preferences = {toggleTheme, isThemeDark}
  
-  return [theme, toggleTheme];
+  return [theme, preferences];
 };

@@ -13,7 +13,6 @@ import {
 	ExploreStackScreen,
 	AccountStackScreen,
 } from "../index.js";
-import { Header } from "react-native/Libraries/NewAppScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -21,9 +20,7 @@ export default function BotNav({ theme }) {
 	return (
 		<NavigationContainer style={styles.container} theme={theme}>
 			<StatusBar color="white" />
-			<Tab.Navigator screenOptions={{
-				header: Header,
-			}}>
+			<Tab.Navigator>
 				<Tab.Screen
 					name="Home"
 					component={HomeStackScreen}
