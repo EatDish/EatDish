@@ -7,7 +7,7 @@ export default function RecipeCard({ recipeInfo }) {
   const navigation = useNavigation();
   return (
     <Card>
-      <TouchableOpacity onPress={() => navigation.navigate('Recipe', { recipe: recipeInfo })}>
+      <TouchableOpacity onPress={() => navigation.navigate('MyRecipe', { recipe: recipeInfo })}>
         <Card.Cover
           source={{
             uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSK1bPJyZFSVNJArocOLzfbkRMC5_GsbZFUfw&usqp=CAU'

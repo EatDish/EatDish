@@ -7,6 +7,7 @@ import Recipe from '../screens/home/Recipe';
 import Register from '../screens/auth/Register';
 import Login from '../screens/auth/Login';
 import Header from '../components/Header';
+import MyRecipe from '../screens/home/MyRecipe';
 
 const HomeStack = createStackNavigator();
 
@@ -19,6 +20,7 @@ export default function HomeStackScreen({ navigation }) {
       <HomeStack.Screen name="MyRecipes" component={MyRecipesList} />
       <HomeStack.Screen name="SavedRecipes" component={Favorites} />
       <HomeStack.Screen name="Recipe" component={Recipe} />
+      <HomeStack.Screen name="MyRecipe" component={MyRecipe} />
     </HomeStack.Navigator>
   );
 }
