@@ -1,7 +1,7 @@
-import React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
-import ExploreScreen from "../screens/explore/ExploreScreen";
-import Recipe from "../screens/home/Recipe";
+import React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
+import ExploreScreen from '../screens/explore/ExploreScreen';
+import Recipe from '../screens/home/Recipe';
 
 const ExploreStack = createStackNavigator();
 

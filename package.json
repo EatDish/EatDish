@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@aws-amplify/datastore": "^2.9.11",
+    "@expo/vector-icons": "^12.0.5",
     "@react-native-async-storage/async-storage": "^1.13.0",
     "@react-native-community/masked-view": "0.1.10",
     "@react-native-community/netinfo": "6.0.0",
@@ -20,7 +21,6 @@
     "aws-amplify-react-native": "^4.3.1",
     "expo": "~41.0.0",
     "expo-status-bar": "~1.0.4",
-    "faker": "^5.4.0",
     "react": "^16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-41.0.0.tar.gz",

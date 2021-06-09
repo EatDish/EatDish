@@ -8,24 +8,16 @@ const Header = ({ scene, navigation, previous }) => {
   const renders = React.useRef(0);
   console.log('Header.js -- renders.current:', renders.current++);
 
-
   return (
     <Appbar.Header
       theme={{
         colors: {
-          primary: theme?.colors.surface,
-        },
-      }}
-    >
+          primary: theme?.colors.surface
+        }
+      }}>
       {previous ? <Appbar.BackAction onPress={navigation.goBack} /> : null}
       <Appbar.Content title={scene.route?.name} />
-      <TouchableRipple onPress={() => toggleTheme()}>
-        <Switch
-          style={[{ backgroundColor: theme.colors.accent }]}
-          color={'yellow'}
-          value={isThemeDark}
-        />
-      </TouchableRipple>
+      <Switch theme={theme} color="#EFD344" value={isThemeDark} onValueChange={toggleTheme} />
     </Appbar.Header>
   );
 };
