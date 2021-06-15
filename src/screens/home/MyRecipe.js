@@ -1,9 +1,18 @@
 import * as React from 'react';
-import { Avatar, Button, Card, Title, Paragraph, Divider, List } from 'react-native-paper';
+import { View } from 'react-native';
+import IngredientListItem from '../../components/IngredientListItem';
 import RecipeHeader from '../../components/RecipeHeader';
-// Delete and edit myRecipe
+import StepListItem from '../../components/StepListItem';
+// Delete and edit each item
 const MyRecipe = ({ route, navigation }) => {
   const { recipe } = route.params;
-  return <RecipeHeader recipe={recipe} />;
+  const { ingredients, instructions } = recipe;
+  return (
+    <View style={{ flex: 1 }}>
+      <RecipeHeader recipe={recipe} />
+      <IngredientListItem ingredients={ingredients} />
+      <StepListItem steps={instructions} />
+    </View>
+  );
 };
 export default MyRecipe;

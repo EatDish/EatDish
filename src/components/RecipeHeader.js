@@ -1,6 +1,6 @@
 import React from 'react';
 import { Avatar, Button, Card, Title, Paragraph, IconButton } from 'react-native-paper';
-import { ImageBackground, StyleSheet } from 'react-native';
+import { ImageBackground, StyleSheet, View } from 'react-native';
 // I"m going to be able to rename, fork recipe
 const RecipeHeader = ({ recipe }) => {
   console.log('RecipeHeader.js -- recipe:', recipe);
@@ -13,7 +13,9 @@ const RecipeHeader = ({ recipe }) => {
       <Card>
         <Card.Title
           title={recipe.dishName}
-          right={(props) => <IconButton {...props} icon="dots-vertical" onPress={() => {}} />}
+          right={(props) => (
+            <IconButton {...props} icon="silverware-fork-knife" onPress={() => {}} />
+          )}
         />
       </Card>
     </ImageBackground>
@@ -24,7 +26,7 @@ export default RecipeHeader;
 const styles = StyleSheet.create({
   image: {
     flex: 1,
-    resizeMode: 'contain',
-    justifyContent: 'center'
+    resizeMode: 'cover',
+    justifyContent: 'flex-end'
   }
 });
