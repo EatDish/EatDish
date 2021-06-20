@@ -1,12 +1,10 @@
-import React, { useRef } from 'react';
-import { useTheme, Appbar, TouchableRipple, Switch } from 'react-native-paper';
+import * as React from 'react';
+import { useTheme, Appbar, Switch } from 'react-native-paper';
 import { PreferencesContext } from '../styles/LightDarkThemeContext';
 
 const Header = ({ scene, navigation, previous }) => {
   const theme = useTheme();
   const { toggleTheme, isThemeDark } = React.useContext(PreferencesContext);
-  const renders = React.useRef(0);
-  console.log('Header.js -- renders.current:', renders.current++);
 
   return (
     <Appbar.Header
